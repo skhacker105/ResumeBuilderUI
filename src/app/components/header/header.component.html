@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Logo" routerLink="/">
+        <img src="../../../assets/logos/logo-white-no-background.png" width="50px">
+    </button>
+    <span class="example-spacer"></span>
+    <span *ngIf="user">{{ user.firstName }} {{ user.lastName }}</span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>share</mat-icon>
+    </button>
+    <app-login></app-login>
+</mat-toolbar>

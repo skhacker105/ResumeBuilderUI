@@ -1,0 +1,123 @@
+<form>
+    <mat-accordion class="example-headers-align">
+        <!-- Personal Info -->
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Personal data
+                </mat-panel-title>
+                <mat-panel-description>
+                    Type your perosnal and summary info
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Add Mat form field -->
+
+            <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <!-- Educational -->
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Educational
+                </mat-panel-title>
+                <mat-panel-description>
+                    Starting from 10th till current
+                    <mat-icon>library_books</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Add Mat form field -->
+
+            <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <!-- Professional -->
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Professional
+                </mat-panel-title>
+                <mat-panel-description>
+                    Jobs/Projects/Skills
+                    <mat-icon>work</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Add Controls -->
+
+            <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <!-- Expertiese -->
+        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Expertiese
+                </mat-panel-title>
+                <mat-panel-description>
+                    Technical Skills
+                    <mat-icon>stars</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Add Controls -->
+
+            <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <!-- Certification -->
+        <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Certification
+                </mat-panel-title>
+                <mat-panel-description>
+                    If Any
+                    <mat-icon>notes</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Add Controls -->
+
+            <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <!-- Family -->
+        <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Family
+                </mat-panel-title>
+                <mat-panel-description>
+                    Name and relations
+                    <mat-icon>supervised_user_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Add Controls -->
+
+            <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button mat-button color="primary" (click)="nextStep()">End</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+</form>

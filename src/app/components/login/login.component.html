@@ -1,0 +1,25 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User Account">
+    <mat-icon>account_circle</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item *ngIf="user" routerLink="/information">
+      <mat-icon>update</mat-icon>
+      <span>Update Information</span>
+    </button>
+    <button mat-menu-item *ngIf="user">
+      <mat-icon>view_quilt</mat-icon>
+      <span>Select Layout</span>
+    </button>
+    <button mat-menu-item *ngIf="user">
+      <mat-icon>visibility</mat-icon>
+      <span>Resume Preview</span>
+    </button>
+    <button mat-menu-item *ngIf="user" (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button mat-menu-item *ngIf="!user" (click)="proceedToLogin()">
+      <mat-icon>power</mat-icon>
+      <span>POWER IN</span>
+    </button>
+  </mat-menu>

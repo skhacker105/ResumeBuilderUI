@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  loginurl: 'https://skops-auth-ui.vercel.app/',
+  uersapi: "https://skops.vercel.app/users"
 };
