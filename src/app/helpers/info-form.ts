@@ -27,7 +27,7 @@ export class InfoForm {
             permanentAddress: this.newAddressForm(),
             noticePeriod: this.newNoticePeriod(),
             resumeHeadLine: ['', Validators.required],
-            petProjects: this.fb.array([], Validators.required), // pending
+            petProjects: this.fb.array([], Validators.required),
             languages: this.fb.array([], Validators.required), // pending
             familyMembers: this.fb.array([]), // pending
             certifications: this.fb.array([]), // pending

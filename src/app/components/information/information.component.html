@@ -324,7 +324,7 @@
                 </mat-expansion-panel>
 
                 <!-- Educational -->
-                <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle formArrayName="education">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Educational
@@ -335,7 +335,37 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <!-- Add Mat form field -->
+                    <!-- Add Education -->
+                    <mat-card>
+                        <mat-card-header>
+                            <span class="example-spacer"></span>
+                            <button mat-mini-fab color="primary" (click)="addEducation()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-card-header>
+                    </mat-card>
+                    <!-- Education List -->
+                    <ng-container *ngFor="let project of education.controls; let idx = index;" [formGroupName]="idx">
+
+                        <mat-grid-list cols="12" [rowHeight]="rowHeight" class="border-1">
+                            <!-- university -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field>
+                                    <mat-label>University</mat-label>
+                                    <input matInput placeholder="University" formControlName="university">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <!-- Delete -->
+                            <mat-grid-tile colspan="2">
+                                <button mat-mini-fab color="error" (click)="deleteEducation(idx)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </mat-grid-tile>
+
+                        </mat-grid-list>
+
+                    </ng-container>
 
                     <mat-action-row>
                         <button mat-button color="warn" (click)="prevStep()">Previous</button>
@@ -344,7 +374,7 @@
                 </mat-expansion-panel>
 
                 <!-- Professional -->
-                <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Professional
@@ -364,7 +394,7 @@
                 </mat-expansion-panel>
 
                 <!-- Expertiese -->
-                <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Expertiese
@@ -384,7 +414,7 @@
                 </mat-expansion-panel>
 
                 <!-- Certification -->
-                <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(4)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Certification
@@ -404,7 +434,7 @@
                 </mat-expansion-panel>
 
                 <!-- Family -->
-                <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(5)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Family

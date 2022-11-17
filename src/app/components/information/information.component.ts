@@ -16,6 +16,7 @@ export class InformationComponent extends InfoForm implements OnInit {
   rowHeight = "100px";
   get underNoticeControl(): FormControl { return this.infoForm?.get('noticePeriod')?.get('underNotice') as FormControl; }
   get petProjects(): FormArray { return this.infoForm?.get('petProjects') as FormArray; }
+  get education(): FormArray { return this.infoForm?.get('education') as FormArray; }
 
   constructor(private userService: UserService, fb: FormBuilder) {
     super(fb);
@@ -36,6 +37,14 @@ export class InformationComponent extends InfoForm implements OnInit {
 
   deletePetProject(index: number) {
     this.petProjects.removeAt(index);
+  }
+
+  addEducation() {
+    this.education.push(this.newEducationForm());
+  }
+
+  deleteEducation(index: number) {
+    this.education.removeAt(index);
   }
 
   setStep(index: number) {
