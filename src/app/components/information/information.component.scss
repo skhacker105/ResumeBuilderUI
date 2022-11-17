@@ -1,8 +1,57 @@
 .example-headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .example-headers-align .mat-form-field + .mat-form-field {
-    margin-left: 8px;
-  }
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field+.mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-expansion-panel {
+  background: #f0e8ff;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+  background: #f0e8ff;
+}
+
+.mat-expansion-panel.mat-expanded,
+.mat-expansion-panel.mat-expanded:hover,
+.mat-expansion-panel.mat-expanded:focus {
+  background: #ffffff;
+}
+
+mat-card {
+    box-shadow: none !important;
+}
+
+.info-form-container {
+  display: flex;
+}
+
+.info-form {
+  width: 70%;
+  min-width: 800px;
+  margin: auto;
+}
+
+.mat-form-field-appearance-legacy {
+
+	.mat-form-field-prefix,
+	.mat-form-field-suffix {
+		align-self: flex-end;
+	}
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0 !important;
+}
+
+.info-form-container::ng-deep .mat-expansion-panel-body {
+  max-height: 400px;
+  overflow: auto;
+}
+

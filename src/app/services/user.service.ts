@@ -11,6 +11,7 @@ export class UserService {
 
   private _loggedInUser = new BehaviorSubject<IUser | undefined>(undefined);
   public loggedInUser = this._loggedInUser.asObservable();
+  get user(): IUser | undefined { return this._loggedInUser.value }
 
   constructor(private http: HttpClient) {
     this.restoreLoggedInInfo();
@@ -18,7 +19,7 @@ export class UserService {
 
   restoreLoggedInInfo() {
     if (localStorage.getItem('user')) {
-      const u=JSON.parse(localStorage.getItem('user') || '{}');
+      const u = JSON.parse(localStorage.getItem('user') || '{}');
       this.setUser(u)
     }
   }

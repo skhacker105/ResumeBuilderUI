@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { InfoForm } from 'src/app/helpers/info-form';
-import { IPersonal } from 'src/app/models/personal';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../models/user';
 
@@ -12,12 +11,14 @@ import { IUser } from '../../models/user';
 })
 export class InformationComponent extends InfoForm implements OnInit {
 
-  step = -1;
-  form: IPersonal | undefined
+  step = 0;
   user: IUser | undefined;
+  rowHeight = "100px";
+  get underNoticeControl(): FormControl { return this.infoForm?.get('noticePeriod')?.get('underNotice') as FormControl; }
+  get petProjects(): FormArray { return this.infoForm?.get('petProjects') as FormArray; }
 
   constructor(private userService: UserService, fb: FormBuilder) {
-    super(fb)
+    super(fb);
   }
 
   ngOnInit(): void {
@@ -26,6 +27,15 @@ export class InformationComponent extends InfoForm implements OnInit {
       this.user = user;
       this.newInfoForm(user);
     });
+  }
+
+  addPetProject() {
+    this.petProjects.push(this.newProjectsForm());
+    console.log('petProjects = ', this.petProjects)
+  }
+
+  deletePetProject(index: number) {
+    this.petProjects.removeAt(index);
   }
 
   setStep(index: number) {
@@ -39,5 +49,7 @@ export class InformationComponent extends InfoForm implements OnInit {
   prevStep() {
     this.step--;
   }
+
+  submitForm() { }
 
 }

@@ -7,8 +7,8 @@ export interface IEducation {
     course: string,
     specialization: string,
     type: EducationTypes,
-    startedOn: IDuration,
-    endedOn: IDuration,
+    startedOn: Date,
+    endedOn?: Date,
     marksScored: number,
     maxPossibleScore: number,
     projects?: IProjects[]

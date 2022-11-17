@@ -21,5 +21,6 @@ export interface IPersonal {
     familyMembers: IFamily,
     certifications: ICertification,
     education: IEducation,
-    professional: IProfessional[]
+    professional: IProfessional[],
+    expertise: string[]
 }

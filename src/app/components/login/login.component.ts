@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IUser } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   user: IUser | undefined;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.loggedInUser.subscribe(user => {
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.userService.logout();
+    this.router.navigateByUrl('/');
   }
 
 }
