@@ -1,0 +1,196 @@
+<form *ngIf="infoForm" [formGroup]="infoForm" (ngSubmit)="submitForm()">
+    <!-- Input Controls --> <br>
+    <mat-grid-list cols="3" [rowHeight]="rowHeight" class="border-1">
+        <!-- fname -->
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="fname">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- lname -->
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="lname">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- jobStartDate -->
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Job Start Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="jobStartDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- resumeHeadLine -->
+        <mat-grid-tile colspan="3">
+            <mat-form-field class="full-width standard-padding">
+                <mat-label>Resume Headline</mat-label>
+                <textarea matInput placeholder="In 50 words or less" formControlName="resumeHeadLine"></textarea>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- salary -->
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Current Salary</mat-label>
+                <input matInput placeholder="First Name" formControlName="salary" type="number">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <!-- currentAddress --> <br>
+    <mat-card formGroupName="currentAddress" class="border-1">
+        <mat-card-header>
+            <mat-card-title>Current Address</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="2" [rowHeight]="rowHeight">
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Street</mat-label>
+                        <textarea matInput formControlName="street"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Locality</mat-label>
+                        <textarea matInput formControlName="locality"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>City</mat-label>
+                        <textarea matInput formControlName="city"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>State</mat-label>
+                        <textarea matInput formControlName="state"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Country</mat-label>
+                        <textarea matInput formControlName="country"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Email</mat-label>
+                        <textarea matInput formControlName="email"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Contact Number</mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input matInput formControlName="contactNumber" />
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- permanentAddress --> <br>
+    <mat-card formGroupName="permanentAddress" class="border-1">
+        <mat-card-header>
+            <mat-card-title>Permanent Address</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="2" [rowHeight]="rowHeight">
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Street</mat-label>
+                        <textarea matInput formControlName="street"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Locality</mat-label>
+                        <textarea matInput formControlName="locality"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>City</mat-label>
+                        <textarea matInput formControlName="city"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>State</mat-label>
+                        <textarea matInput formControlName="state"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Country</mat-label>
+                        <textarea matInput formControlName="country"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Email</mat-label>
+                        <textarea matInput formControlName="email"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                        <mat-label>Contact Number</mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input matInput formControlName="contactNumber" />
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- noticePeriod --> <br>
+    <mat-card formGroupName="noticePeriod" class="border-1">
+        <mat-card-header>
+            <mat-card-title>Resignation Details</mat-card-title>
+            <mat-card-subtitle>
+                <!-- underNotice -->
+                <mat-checkbox formControlName="underNotice">Serving notice period?</mat-checkbox>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list class="full-width" cols="3" [rowHeight]="rowHeight">
+
+                <!-- resignationDate -->
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Resignation Date</mat-label>
+                        <input matInput [matDatepicker]="pickera" formControlName="resignationDate"
+                            [disabled]="!underNoticeControl.value">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="pickera"></mat-datepicker-toggle>
+                        <mat-datepicker #pickera></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <!-- noticeEndDate -->
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Last Working Date</mat-label>
+                        <input matInput [matDatepicker]="pickerb" formControlName="noticeEndDate"
+                            [disabled]="!underNoticeControl.value">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="pickerb"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerb></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+</form>

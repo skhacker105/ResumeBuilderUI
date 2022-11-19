@@ -4,11 +4,6 @@ export interface IResidentialAddress {
     city: string,
     state: string,
     country: string,
-    contactNumber: IPhoneAddress[],
+    contactNumber: string,
     email: string
-}
-
-export interface IPhoneAddress {
-    countryCode: number,
-    phone: number
 }

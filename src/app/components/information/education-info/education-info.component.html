@@ -1,0 +1,133 @@
+<!-- Add Education --><br>
+<mat-card>
+    <mat-card-header>
+        <span class="example-spacer"></span>
+        <button mat-mini-fab color="primary" (click)="addEducation()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-card-header>
+    <!-- Education List -->
+    <form *ngIf="educationForm" (ngSubmit)="submitForm()" [formGroup]="educationForm">
+        <mat-card-content formArrayName="lstEducation">
+            <mat-accordion class="example-headers-align">
+                <ng-container *ngFor="let edu of education.controls; let idx = index;" [formGroupName]="idx">
+                    <mat-expansion-panel hideToggle>
+
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{idx + 1}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{ getCourse(edu) }}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <mat-grid-list cols="11" [rowHeight]="rowHeight" class="full-width border-1">
+                            <!-- Delete -->
+                            <mat-grid-tile colspan="1">
+                                <button mat-mini-fab (click)="deleteEducation(idx)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </mat-grid-tile>
+
+                            <!-- university -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>University</mat-label>
+                                    <input matInput placeholder="University" formControlName="university">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- course -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Course</mat-label>
+                                    <input matInput placeholder="Course" formControlName="course">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- specialization -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Specialization</mat-label>
+                                    <input matInput placeholder="Specialization" formControlName="specialization">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- type -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Education Type</mat-label>
+                                    <mat-select formControlName="type">
+                                        <ng-container *ngFor="let type of educationTypes">
+                                            <mat-option *ngIf="!isNumber(type)" [value]="type">{{type}}</mat-option>
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile colspan="5"></mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- startedOn -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Started On</mat-label>
+                                    <input matInput [matDatepicker]="pickerd" placeholder="Started On"
+                                        formControlName="startedOn">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="pickerd"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerd></mat-datepicker>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <!-- endedOn -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Ended On</mat-label>
+                                    <input matInput [matDatepicker]="pickere" placeholder="Ended On"
+                                        formControlName="endedOn">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="pickere"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickere></mat-datepicker>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- marksScored -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Marks Scored</mat-label>
+                                    <input matInput type="number" placeholder="Marks Scored"
+                                        formControlName="marksScored">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <!-- maxPossibleScore -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Max Possible Score</mat-label>
+                                    <input matInput type="number" placeholder="Max Possible Score"
+                                        formControlName="maxPossibleScore">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- educational projects -->
+                            <mat-grid-tile colspan="10" formArrayName="projects">
+
+                            </mat-grid-tile>
+
+
+                        </mat-grid-list>
+                        <app-pet-projects title="Projects" [petProjects]="educationalProjects(edu)" [rowHeight]="rowHeight"
+                            [user]="user">
+                        </app-pet-projects>
+                    </mat-expansion-panel>
+                </ng-container>
+            </mat-accordion>
+        </mat-card-content>
+    </form>
+</mat-card>

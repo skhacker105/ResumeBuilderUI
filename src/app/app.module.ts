@@ -22,6 +22,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { PersonalInfoComponent } from './components/information/personal-info/personal-info.component';
+import { PetProjectsComponent } from './components/information/pet-projects/pet-projects.component';
+import { EducationInfoComponent } from './components/information/education-info/education-info.component';
+import { ProfessionalInfoComponent } from './components/information/professional-info/professional-info.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,11 @@ import { MatChipsModule } from '@angular/material/chips';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    InformationComponent
+    InformationComponent,
+    PersonalInfoComponent,
+    PetProjectsComponent,
+    EducationInfoComponent,
+    ProfessionalInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatNativeDateModule,
     MatGridListModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

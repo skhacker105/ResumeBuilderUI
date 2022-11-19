@@ -1,21 +1,21 @@
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { IPhoneAddress } from "../models/address";
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 import { ICertification } from "../models/certifications";
-import { IDuration } from "../models/duration";
-import { IEducation } from "../models/education";
 import { IFamily } from "../models/family";
 import { ILanguage } from "../models/language";
-import { IProfessional } from "../models/professional";
-import { IProjects } from "../models/projects";
 import { IUser } from "../models/user";
-import { EducationTypes } from "./education-type-enum";
-import { ProfessionalTypes } from "./professional-type-enum";
 import { ProficiencyTypes } from "./proficiency-types.enum";
 
 export class InfoForm {
     infoForm: FormGroup | undefined;
+    petProjects: FormArray;
+    educationForms: FormArray;
+    professional: FormArray;
 
-    constructor(public fb: FormBuilder) { }
+    constructor(public fb: FormBuilder) {
+        this.petProjects = fb.array([]);
+        this.educationForms = fb.array([]);
+        this.professional = fb.array([]);
+    }
 
     newInfoForm(user: IUser) {
         this.infoForm = this.fb.group({
@@ -26,45 +26,31 @@ export class InfoForm {
             currentAddress: this.newAddressForm(),
             permanentAddress: this.newAddressForm(),
             noticePeriod: this.newNoticePeriod(),
-            resumeHeadLine: ['', Validators.required],
-            petProjects: this.fb.array([], Validators.required),
-            languages: this.fb.array([], Validators.required), // pending
-            familyMembers: this.fb.array([]), // pending
-            certifications: this.fb.array([]), // pending
-            education: this.fb.array([]), // pending
-            professional: this.fb.array([]), // pending
-            expertise: [[]] // pending
+            resumeHeadLine: ['', Validators.required]
+            // languages: this.fb.array([], Validators.required), // pending
+            // familyMembers: this.fb.array([]), // pending
+            // certifications: this.fb.array([]), // pending
+            // expertise: [[]] // pending
         });
     }
 
-    newProfessionalInfoForm(data?: IProfessional): FormGroup {
+    newAddressForm(): FormGroup {
         return this.fb.group({
-            isCurrent: [data?.isCurrent, Validators.required],
-            type: [data ? data.type : ProfessionalTypes.FullTime, Validators.required],
-            companyName: [data?.companyName, Validators.required],
-            companyLocation: [data?.companyLocation, Validators.required],
-            joiningDate: [data?.joiningDate, Validators.required],
-            relievingDate: [data?.relievingDate],
-            salary: [data?.salary, Validators.required],
-            stipend: [data?.stipend],
-            skillsUsed: [data?.skillsUsed, Validators.required],
-            employeeRole: [data?.employeeRole],
-            profileSummary: [data?.profileSummary],
-            projects: this.fb.array([])
+            street: ['', Validators.required],
+            locality: [''],
+            city: ['', Validators.required],
+            state: ['', Validators.required],
+            country: ['', Validators.required],
+            contactNumber: ['', ],
+            email: ['', Validators.required]
         });
     }
-
-    newEducationForm(data?: IEducation): FormGroup {
+  
+    newNoticePeriod(): FormGroup {
         return this.fb.group({
-            university: [data?.university, Validators.required],
-            course: [data?.course, Validators.required],
-            specialization: [data?.specialization, Validators.required],
-            type: [data?.type ? data?.type : EducationTypes.FullTime, Validators.required],
-            startedOn: [data?.startedOn, [Validators.required]],
-            endedOn: [data?.endedOn],
-            marksScored: [data?.marksScored, Validators.required],
-            maxPossibleScore: [data?.maxPossibleScore, Validators.required],
-            projects: this.fb.array([])
+            underNotice: [false, Validators.required],
+            resignationDate: [null],
+            noticeEndDate: [null]
         });
     }
 
@@ -94,55 +80,6 @@ export class InfoForm {
             read: [data?.read],
             write: [data?.write],
             speak: [data?.speak]
-        });
-    }
-
-    newProjectsForm(data?: IProjects): FormGroup {
-        return this.fb.group({
-            title: [data?.title, Validators.required],
-            projectDuration: this.newDurationForm(),
-            myContributions: [data?.myContributions, Validators.required],
-            projectDetails: [data?.projectDetails, Validators.required],
-            githubLink: [data?.githubLink]
-        });
-    }
-
-    newNoticePeriod(): FormGroup {
-        return this.fb.group({
-            underNotice: [false, Validators.required],
-            resignationDate: [null],
-            noticeEndDate: [null]
-        });
-    }
-
-    newDurationForm(): FormGroup {
-        return this.fb.group({
-            years: [0],
-            months: [0],
-            days: [0],
-            hours: [0],
-            minutes: [0],
-            seconds: [0],
-            milliseconds: [0]
-        });
-    }
-
-    newAddressForm(): FormGroup {
-        return this.fb.group({
-            street: ['', Validators.required],
-            locality: [''],
-            city: ['', Validators.required],
-            state: ['', Validators.required],
-            country: ['', Validators.required],
-            contactNumber: this.fb.array([], Validators.required),
-            email: ['', Validators.required]
-        });
-    }
-
-    newPhoneAddressForm(data?: IPhoneAddress): FormGroup {
-        return this.fb.group({
-            countryCode: [data?.countryCode, Validators.required],
-            phone: [data?.phone, Validators.required]
         });
     }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { EducationTypes } from 'src/app/helpers/education-type-enum';
 import { InfoForm } from 'src/app/helpers/info-form';
+import { SupportFunctions } from 'src/app/helpers/support-functions';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../models/user';
 
@@ -14,9 +16,7 @@ export class InformationComponent extends InfoForm implements OnInit {
   step = 0;
   user: IUser | undefined;
   rowHeight = "100px";
-  get underNoticeControl(): FormControl { return this.infoForm?.get('noticePeriod')?.get('underNotice') as FormControl; }
-  get petProjects(): FormArray { return this.infoForm?.get('petProjects') as FormArray; }
-  get education(): FormArray { return this.infoForm?.get('education') as FormArray; }
+  isNumber = SupportFunctions.isNumber;
 
   constructor(private userService: UserService, fb: FormBuilder) {
     super(fb);
@@ -30,23 +30,6 @@ export class InformationComponent extends InfoForm implements OnInit {
     });
   }
 
-  addPetProject() {
-    this.petProjects.push(this.newProjectsForm());
-    console.log('petProjects = ', this.petProjects)
-  }
-
-  deletePetProject(index: number) {
-    this.petProjects.removeAt(index);
-  }
-
-  addEducation() {
-    this.education.push(this.newEducationForm());
-  }
-
-  deleteEducation(index: number) {
-    this.education.removeAt(index);
-  }
-
   setStep(index: number) {
     this.step = index;
   }
@@ -58,7 +41,5 @@ export class InformationComponent extends InfoForm implements OnInit {
   prevStep() {
     this.step--;
   }
-
-  submitForm() { }
 
 }
