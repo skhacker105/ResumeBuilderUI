@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EducationTypes } from 'src/app/helpers/education-type-enum';
 import { InfoForm } from 'src/app/helpers/info-form';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
+import { IPersonal } from 'src/app/models/personal';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../models/user';
 
@@ -40,6 +41,20 @@ export class InformationComponent extends InfoForm implements OnInit {
 
   prevStep() {
     this.step--;
+  }
+
+  save() {
+    let info = Object.assign({
+      _id: this.user?._id,
+      petProjects: this.petProjects.value,
+      languages: this.languageForms.value,
+      familyMembers: this.familyMembers.value,
+      certifications: this.certificationForms?.value,
+      education: this.educationForms.value,
+      professional: this.professional.value,
+      expertises: this.expertisesForm?.get('lstExpertise')?.value
+    }, this.infoForm?.value) as IPersonal;
+    console.log('info = ', info);
   }
 
 }

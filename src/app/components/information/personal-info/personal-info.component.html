@@ -3,7 +3,7 @@
     <mat-grid-list cols="3" [rowHeight]="rowHeight" class="border-1">
         <!-- fname -->
         <mat-grid-tile>
-            <mat-form-field>
+            <mat-form-field class="full-width standard-padding">
                 <mat-label>First Name</mat-label>
                 <input matInput placeholder="First Name" formControlName="fname">
             </mat-form-field>
@@ -11,7 +11,7 @@
 
         <!-- lname -->
         <mat-grid-tile>
-            <mat-form-field>
+            <mat-form-field class="full-width standard-padding">
                 <mat-label>Last Name</mat-label>
                 <input matInput placeholder="First Name" formControlName="lname">
             </mat-form-field>
@@ -19,7 +19,7 @@
 
         <!-- jobStartDate -->
         <mat-grid-tile>
-            <mat-form-field>
+            <mat-form-field class="full-width standard-padding">
                 <mat-label>Job Start Date</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="jobStartDate">
                 <mat-hint>MM/DD/YYYY</mat-hint>
@@ -38,7 +38,7 @@
 
         <!-- salary -->
         <mat-grid-tile>
-            <mat-form-field>
+            <mat-form-field class="full-width standard-padding">
                 <mat-label>Current Salary</mat-label>
                 <input matInput placeholder="First Name" formControlName="salary" type="number">
                 <span matPrefix>$&nbsp;</span>

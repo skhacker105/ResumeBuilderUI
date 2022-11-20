@@ -9,6 +9,7 @@ import { IProjects } from "./projects";
 import { IUser } from "./user";
 
 export interface IPersonal {
+    _id: string,
     user: IUser,
     jobStartDate: Date,
     salary: number,

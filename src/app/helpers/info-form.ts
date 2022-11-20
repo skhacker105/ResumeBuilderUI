@@ -22,6 +22,7 @@ export class InfoForm {
         this.certificationForms = fb.array([]);
         this.familyMembers = fb.array([]);
         this.languageForms = fb.array([]);
+        this.expertisesForm = this.newExpertiseForm();
     }
 
     newInfoForm(user: IUser) {
@@ -34,7 +35,12 @@ export class InfoForm {
             permanentAddress: this.newAddressForm(),
             noticePeriod: this.newNoticePeriod(),
             resumeHeadLine: ['', Validators.required]
-            // languages: this.fb.array([], Validators.required), // in progress
+        });
+    }
+
+    newExpertiseForm(): FormGroup {
+        return this.fb.group({
+            lstExpertise: [[]]
         });
     }
 
@@ -45,11 +51,11 @@ export class InfoForm {
             city: ['', Validators.required],
             state: ['', Validators.required],
             country: ['', Validators.required],
-            contactNumber: ['', ],
+            contactNumber: ['',],
             email: ['', Validators.required]
         });
     }
-  
+
     newNoticePeriod(): FormGroup {
         return this.fb.group({
             underNotice: [false, Validators.required],

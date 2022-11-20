@@ -18,20 +18,19 @@ export class ExpertiseComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.expertisesForm = this.fb.group({
-        lstExpertise: [[]]
-    });
   }
 
   addExpertise(event: MatChipInputEvent) {
     const exp = (event.value || '').trim();
     if (exp) this.expertise.push(exp);
     event.chipInput!.clear();
+    console.log('expertise = ', this.expertise);
   }
 
   deleteExpertise(exp: string) {
     const index = this.expertise.indexOf(exp);
     this.expertise.splice(index, 1);
+    console.log('expertise = ', this.expertise);
   }
 
   submitForm() {}
