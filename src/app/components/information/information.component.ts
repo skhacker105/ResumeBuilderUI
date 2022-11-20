@@ -45,7 +45,7 @@ export class InformationComponent extends InfoForm implements OnInit {
 
   save() {
     let info = Object.assign({
-      _id: this.user?._id,
+      userId: this.user?._id,
       petProjects: this.petProjects.value,
       languages: this.languageForms.value,
       familyMembers: this.familyMembers.value,
