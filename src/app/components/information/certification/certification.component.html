@@ -1,0 +1,94 @@
+<!-- Add Certification --><br>
+<mat-card>
+    <mat-card-header>
+        <span class="example-spacer"></span>
+        <button mat-mini-fab color="primary" (click)="addCertification()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-card-header>
+    <!-- Certification List -->
+    <form *ngIf="certificationForm" (ngSubmit)="submitForm()" [formGroup]="certificationForm">
+        <mat-card-content formArrayName="lstCertification">
+            <mat-accordion class="example-headers-align">
+                <ng-container *ngFor="let edu of certification.controls; let idx = index;" [formGroupName]="idx">
+                    <mat-expansion-panel hideToggle>
+
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{idx + 1}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{ getCertification(edu) }}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <mat-grid-list cols="11" [rowHeight]="rowHeight" class="full-width border-1">
+                            <!-- Delete -->
+                            <mat-grid-tile colspan="1">
+                                <button mat-mini-fab (click)="deleteCertification(idx)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </mat-grid-tile>
+
+                            <!-- name -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput placeholder="Name" formControlName="name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- provider -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Certification Provider</mat-label>
+                                    <input matInput placeholder="Certification Provider" formControlName="provider">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- url -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Certification URL</mat-label>
+                                    <input matInput placeholder="Certification URL" formControlName="url">
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <mat-grid-tile colspan="5"></mat-grid-tile>
+                            <!-- validFrom -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Valid From</mat-label>
+                                    <input matInput [matDatepicker]="pickera" formControlName="validFrom">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="pickera"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickera></mat-datepicker>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- canExpire, expiryDate -->
+                            <mat-grid-tile colspan="5">
+                                <mat-checkbox class="full-width standard-padding" formControlName="canExpire">Can Expire?</mat-checkbox>
+                            </mat-grid-tile>
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Expiry Date</mat-label>
+                                    <input matInput [matDatepicker]="pickerb" formControlName="expiryDate" [disabled]="!canExpireControl(edu).value">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="pickerb"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerb></mat-datepicker>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+
+                        </mat-grid-list>
+                    </mat-expansion-panel>
+                </ng-container>
+            </mat-accordion>
+        </mat-card-content>
+    </form>
+</mat-card>

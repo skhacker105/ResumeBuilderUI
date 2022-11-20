@@ -1,0 +1,53 @@
+<!-- Add Education --><br>
+<mat-card>
+    <mat-card-header>
+        <span class="example-spacer"></span>
+        <button mat-mini-fab color="primary" (click)="addFamily()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-card-header>
+    <!-- Education List -->
+    <form *ngIf="familyMemberForm" (ngSubmit)="submitForm()" [formGroup]="familyMemberForm">
+        <mat-card-content formArrayName="lstfamilyMember">
+            <ng-container *ngFor="let edu of families.controls; let idx = index;" [formGroupName]="idx">
+                
+
+                <mat-grid-list cols="10" [rowHeight]="rowHeight" class="full-width border-1">
+                    <!-- Index -->
+                    <mat-grid-tile colspan="1">
+                        {{ idx + 1 }}
+                    </mat-grid-tile>
+
+                    <!-- name -->
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="full-width standard-padding">
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Name" formControlName="name">
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <!-- relationship -->
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="full-width standard-padding">
+                            <mat-label>Relationship</mat-label>
+                            <mat-select formControlName="relationship">
+                                <ng-container *ngFor="let type of familyTypes">
+                                    <mat-option *ngIf="!isNumber(type)" [value]="type">{{type}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <!-- Delete -->
+                    <mat-grid-tile colspan="1">
+                        <button mat-mini-fab (click)="deleteFamily(idx)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+
+
+                </mat-grid-list>
+            </ng-container>
+        </mat-card-content>
+    </form>
+</mat-card>

@@ -10,11 +10,18 @@ export class InfoForm {
     petProjects: FormArray;
     educationForms: FormArray;
     professional: FormArray;
+    expertisesForm: FormGroup | undefined;
+    certificationForms: FormArray | undefined;
+    familyMembers: FormArray;
+    languageForms: FormArray;
 
     constructor(public fb: FormBuilder) {
         this.petProjects = fb.array([]);
         this.educationForms = fb.array([]);
         this.professional = fb.array([]);
+        this.certificationForms = fb.array([]);
+        this.familyMembers = fb.array([]);
+        this.languageForms = fb.array([]);
     }
 
     newInfoForm(user: IUser) {
@@ -27,10 +34,7 @@ export class InfoForm {
             permanentAddress: this.newAddressForm(),
             noticePeriod: this.newNoticePeriod(),
             resumeHeadLine: ['', Validators.required]
-            // languages: this.fb.array([], Validators.required), // pending
-            // familyMembers: this.fb.array([]), // pending
-            // certifications: this.fb.array([]), // pending
-            // expertise: [[]] // pending
+            // languages: this.fb.array([], Validators.required), // in progress
         });
     }
 

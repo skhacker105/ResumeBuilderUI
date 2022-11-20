@@ -1,0 +1,67 @@
+<!-- Add Certification --><br>
+<mat-card>
+    <mat-card-header>
+        <span class="example-spacer"></span>
+        <button mat-mini-fab color="primary" (click)="addLanguage()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-card-header>
+    <!-- Certification List -->
+    <form *ngIf="languageForm" (ngSubmit)="submitForm()" [formGroup]="languageForm">
+        <mat-card-content formArrayName="lstLanguage">
+                <ng-container *ngFor="let edu of language.controls; let idx = index;" [formGroupName]="idx">
+
+                    <mat-grid-list cols="11" [rowHeight]="rowHeight" class="full-width border-1">
+                        <!-- Index -->
+                        <mat-grid-tile colspan="1">
+                            {{ idx + 1}}
+                        </mat-grid-tile>
+
+                        <!-- name -->
+                        <mat-grid-tile colspan="3">
+                            <mat-form-field class="full-width standard-padding">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Name" formControlName="name">
+                            </mat-form-field>
+                        </mat-grid-tile>
+
+                        <!-- proficiency -->
+                        <mat-grid-tile colspan="3">
+                            <mat-form-field class="full-width standard-padding">
+                                <mat-label>Proficiency</mat-label>
+                                <mat-select formControlName="proficiency">
+                                    <ng-container *ngFor="let type of proficiencyTypes">
+                                        <mat-option *ngIf="!isNumber(type)" [value]="type">{{type}}</mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-grid-tile>
+
+                        <!-- speak -->
+                        <mat-grid-tile>
+                            <mat-checkbox formControlName="speak">Speak</mat-checkbox>
+                        </mat-grid-tile>
+
+                        <!-- read -->
+                        <mat-grid-tile>
+                            <mat-checkbox formControlName="read">Read</mat-checkbox>
+                        </mat-grid-tile>
+
+                        <!-- write -->
+                        <mat-grid-tile>
+                            <mat-checkbox formControlName="write">Write</mat-checkbox>
+                        </mat-grid-tile>
+                        
+                        <!-- Delete -->
+                        <mat-grid-tile colspan="1">
+                            <button mat-mini-fab (click)="deleteLanguage(idx)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </mat-grid-tile>
+
+
+                    </mat-grid-list>
+                </ng-container>
+        </mat-card-content>
+    </form>
+</mat-card>

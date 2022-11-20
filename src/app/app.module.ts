@@ -27,6 +27,10 @@ import { PersonalInfoComponent } from './components/information/personal-info/pe
 import { PetProjectsComponent } from './components/information/pet-projects/pet-projects.component';
 import { EducationInfoComponent } from './components/information/education-info/education-info.component';
 import { ProfessionalInfoComponent } from './components/information/professional-info/professional-info.component';
+import { ExpertiseComponent } from './components/information/expertise/expertise.component';
+import { CertificationComponent } from './components/information/certification/certification.component';
+import { FamilyComponent } from './components/information/family/family.component';
+import { LanguageComponent } from './components/information/language/language.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { ProfessionalInfoComponent } from './components/information/professional
     PersonalInfoComponent,
     PetProjectsComponent,
     EducationInfoComponent,
-    ProfessionalInfoComponent
+    ProfessionalInfoComponent,
+    ExpertiseComponent,
+    CertificationComponent,
+    FamilyComponent,
+    LanguageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<br>
+<mat-chip-list aria-label="Enter keywords">
+  <mat-chip *ngFor="let exp of expertise" (removed)="deleteExpertise(exp)">
+    {{exp}}
+    <button matChipRemove aria-label="'remove ' + keyword">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-chip>
+</mat-chip-list><br>
+<form *ngIf="expertisesForm" (ngSubmit)="submitForm()" [formGroup]="expertisesForm">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Expertises</mat-label>
+    <mat-chip-list #chipGrid aria-label="Enter keywords" formControlName="lstExpertise" class="hidden">
+      <mat-chip *ngFor="let exp of expertise" (removed)="deleteExpertise(exp)">
+        {{exp}}
+        <button matChipRemove aria-label="'remove ' + keyword">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+    </mat-chip-list>
+    <input placeholder="New Expertise..." [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="addExpertise($event)" />
+  </mat-form-field>
+</form>

@@ -22,5 +22,5 @@ export interface IPersonal {
     certifications: ICertification,
     education: IEducation,
     professional: IProfessional[],
-    expertise: string[]
+    expertises: string[]
 }
