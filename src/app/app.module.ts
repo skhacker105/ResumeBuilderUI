@@ -31,6 +31,7 @@ import { ExpertiseComponent } from './components/information/expertise/expertise
 import { CertificationComponent } from './components/information/certification/certification.component';
 import { FamilyComponent } from './components/information/family/family.component';
 import { LanguageComponent } from './components/information/language/language.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { LanguageComponent } from './components/information/language/language.co
     MatGridListModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

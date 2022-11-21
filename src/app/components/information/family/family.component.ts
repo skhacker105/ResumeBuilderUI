@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
-import { IFamily } from 'src/app/models/family';
 import { Relationships } from 'src/app/models/relation-enum';
 import { IUser } from 'src/app/models/user';
 
@@ -10,7 +9,7 @@ import { IUser } from 'src/app/models/user';
   templateUrl: './family.component.html',
   styleUrls: ['./family.component.scss']
 })
-export class FamilyComponent implements OnInit {
+export class FamilyComponent implements OnInit, OnChanges {
 
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
@@ -21,26 +20,21 @@ export class FamilyComponent implements OnInit {
   get families(): FormArray { return this.familyMemberForm?.get('lstfamilyMember') as FormArray; }
 
   constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.familyMemberForm = this.fb.group({
       lstfamilyMember: this.familyMemberForms
     });
   }
 
+  ngOnInit(): void {
+  }
+
   addFamily() {
-    this.families.push(this.newFamily());
+    this.families.push(SupportFunctions.newFamilyForm(this.fb));
   }
 
   deleteFamily(index: number) {
     this.families.removeAt(index);
-  }
-
-  newFamily(data?: IFamily): FormGroup {
-    return this.fb.group({
-      name: [data?.name, Validators.required],
-      relationship: [data?.relationship, Validators.required]
-    });
   }
 
   submitForm() { }

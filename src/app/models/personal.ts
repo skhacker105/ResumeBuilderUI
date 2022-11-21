@@ -11,6 +11,8 @@ import { IUser } from "./user";
 export interface IPersonal {
     userId: string,
     user: IUser,
+    fname: string,
+    lname: string,
     jobStartDate: Date,
     salary: number,
     currentAddress: IResidentialAddress,
@@ -19,9 +21,9 @@ export interface IPersonal {
     resumeHeadLine: string,
     petProjects?: IProjects[],
     languages?: ILanguage[],
-    familyMembers: IFamily,
-    certifications: ICertification,
-    education: IEducation,
+    familyMembers: IFamily[],
+    certifications: ICertification[],
+    education: IEducation[],
     professional: IProfessional[],
     expertises: string[]
 }

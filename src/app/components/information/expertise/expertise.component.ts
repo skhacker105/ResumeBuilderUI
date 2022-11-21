@@ -24,13 +24,11 @@ export class ExpertiseComponent implements OnInit {
     const exp = (event.value || '').trim();
     if (exp) this.expertise.push(exp);
     event.chipInput!.clear();
-    console.log('expertise = ', this.expertise);
   }
 
   deleteExpertise(exp: string) {
     const index = this.expertise.indexOf(exp);
     this.expertise.splice(index, 1);
-    console.log('expertise = ', this.expertise);
   }
 
   submitForm() {}

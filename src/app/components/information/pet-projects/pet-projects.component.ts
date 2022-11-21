@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IProjects } from 'src/app/models/projects';
 import { IUser } from 'src/app/models/user';
@@ -8,20 +8,23 @@ import { IUser } from 'src/app/models/user';
   templateUrl: './pet-projects.component.html',
   styleUrls: ['./pet-projects.component.scss']
 })
-export class PetProjectsComponent implements OnInit {
+export class PetProjectsComponent implements OnInit, OnChanges {
 
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() petProjects: FormArray | undefined;
   @Input() title: string | undefined;
   projects: FormGroup | undefined;
+  get projectFormArray(): FormArray { return this.projects?.get('lstProjects') as FormArray; }
 
   constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.projects = this.fb.group({
       lstProjects: this.petProjects
     });
+  }
+
+  ngOnInit(): void {
   }
 
   getProjectTitle(project: any): string {
@@ -30,12 +33,12 @@ export class PetProjectsComponent implements OnInit {
 
   addPetProject() {
     if (!this.petProjects) return;
-    this.petProjects.push(this.newProjectsForm());
+    this.projectFormArray.push(this.newProjectsForm());
   }
 
   deletePetProject(index: number) {
     if (!this.petProjects) return;
-    this.petProjects.removeAt(index);
+    this.projectFormArray.removeAt(index);
   }
 
   newProjectsForm(data?: IProjects): FormGroup {

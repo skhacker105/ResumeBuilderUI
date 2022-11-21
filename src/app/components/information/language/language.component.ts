@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ProficiencyTypes } from 'src/app/helpers/proficiency-types.enum';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
-import { ILanguage } from 'src/app/models/language';
 import { IUser } from 'src/app/models/user';
 
 @Component({
@@ -10,7 +9,7 @@ import { IUser } from 'src/app/models/user';
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss']
 })
-export class LanguageComponent implements OnInit {
+export class LanguageComponent implements OnInit, OnChanges {
 
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
@@ -21,32 +20,24 @@ export class LanguageComponent implements OnInit {
   get language(): FormArray { return this.languageForm?.get('lstLanguage') as FormArray; }
 
   constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.languageForm = this.fb.group({
       lstLanguage: this.languageForms
     });
+  }
+
+  ngOnInit(): void {
   }
 
   // educationalProjects(e: any): FormArray { return e.get('projects') as FormArray; }
   // getCourse(e: any): string { return e.get('course').value }
 
   addLanguage() {
-    this.language.push(this.newlanguageForm());
+    this.language.push(SupportFunctions.newlanguageForm(this.fb));
   }
 
   deleteLanguage(index: number) {
     this.language.removeAt(index);
-  }
-
-  newlanguageForm(data?: ILanguage): FormGroup {
-    return this.fb.group({
-      name: [data?.name, Validators.required],
-      proficiency: [data?.proficiency, Validators.required],
-      read: [data?.read],
-      write: [data?.read],
-      speak: [data?.read]
-    });
   }
 
   submitForm() { }

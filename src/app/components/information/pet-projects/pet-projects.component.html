@@ -11,7 +11,7 @@
         <mat-card-content formArrayName="lstProjects">
             <mat-accordion class="example-headers-align"></mat-accordion>
             <ng-container *ngFor="let project of petProjects?.controls; let idx = index;" [formGroupName]="idx">
-                <mat-expansion-panel [expanded]="true" hideToggle>
+                <mat-expansion-panel [expanded]="false" hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             {{idx + 1}}

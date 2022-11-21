@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { EducationTypes } from 'src/app/helpers/education-type-enum';
+import { FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoForm } from 'src/app/helpers/info-form';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
 import { IPersonal } from 'src/app/models/personal';
+import { BuilderService } from 'src/app/services/builder.service';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../models/user';
 
@@ -17,9 +18,10 @@ export class InformationComponent extends InfoForm implements OnInit {
   step = 0;
   user: IUser | undefined;
   rowHeight = "100px";
+  duration = 3;
   isNumber = SupportFunctions.isNumber;
 
-  constructor(private userService: UserService, fb: FormBuilder) {
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, fb: FormBuilder, private builderService: BuilderService) {
     super(fb);
   }
 
@@ -27,7 +29,7 @@ export class InformationComponent extends InfoForm implements OnInit {
     this.userService.loggedInUser.subscribe(user => {
       if (!user) return
       this.user = user;
-      this.newInfoForm(user);
+      this.loadInfo();
     });
   }
 
@@ -43,6 +45,13 @@ export class InformationComponent extends InfoForm implements OnInit {
     this.step--;
   }
 
+  loadInfo() {
+    if (this.user)
+      this.builderService.getInfo(this.user._id).subscribe(res => {
+        this.user ? this.newInfoForm(this.user, res[0]) : null;
+       });
+  }
+
   save() {
     let info = Object.assign({
       userId: this.user?._id,
@@ -54,7 +63,12 @@ export class InformationComponent extends InfoForm implements OnInit {
       professional: this.professional.value,
       expertises: this.expertisesForm?.get('lstExpertise')?.value
     }, this.infoForm?.value) as IPersonal;
-    console.log('info = ', info);
+    this.user ? this.builderService.saveInfo(this.user._id, info).subscribe(res => {
+      this._snackBar.open(res.message, '', {
+        duration: this.duration * 1000
+      });
+      this.loadInfo();
+    }) : null;
   }
 
 }
