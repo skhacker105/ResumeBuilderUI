@@ -3,15 +3,17 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.userService.loggedInUser.subscribe(u => {});
@@ -21,6 +23,16 @@ export class TokenInterceptor implements HttpInterceptor {
         setHeaders: { 'x-access-token': `${token}` }
       });
     }
-    return next.handle(request);
+    return next.handle(request)
+    .pipe(
+      catchError( (error: HttpErrorResponse) => { 
+        console.log('error = ', error);
+        if (error.status === 401) {
+          this.userService.logout();
+          this.router.navigateByUrl('/');
+        }
+         return throwError(error);
+       })
+    );
   }
 }

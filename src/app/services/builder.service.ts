@@ -13,12 +13,12 @@ export class BuilderService {
   constructor(private http: HttpClient) { }
 
   getInfo(userId: string): Observable<IPersonal[]> {
-    const url = environment.resumebuilderapi + '/apiBuilder?userId='+userId;
+    const url = environment.resumebuilderapi + '?userId='+userId;
     return this.http.get<IPersonal[]>(url);
   }
 
   saveInfo(userId: string, data: IPersonal): Observable<IAPIMessageResponse> {
-    const url = environment.resumebuilderapi + '/apiBuilder?userId='+userId;
+    const url = environment.resumebuilderapi + '?userId='+userId;
     return this.http.post<IAPIMessageResponse>(url, data);
   }
 }
