@@ -77,11 +77,168 @@
                                 </mat-form-field>
                             </mat-grid-tile>
 
+                            <!-- relievingDate -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Relieving Date</mat-label>
+                                    <input matInput [matDatepicker]="pickera" placeholder="Relieving Date"
+                                        formControlName="relievingDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="pickera"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickera></mat-datepicker>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- salary -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>CTC</mat-label>
+                                    <input matInput placeholder="Mentioned in offer letter or appraisal letter" formControlName="salary" type="number">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                            <!-- employeeRole -->
+                            <mat-grid-tile colspan="5">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Your Role</mat-label>
+                                    <input matInput placeholder="Team Lead" formControlName="employeeRole">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- skillsUsed -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Skills Used</mat-label>
+                                    <mat-chip-list #chipGrid aria-label="Enter keywords" formControlName="skillsUsed">
+                                      <mat-chip *ngFor="let exp of professionalSkills(edu)" (removed)="deleteSkills(edu, exp)">
+                                        {{exp}}
+                                        <button matChipRemove aria-label="'remove ' + keyword">
+                                          <mat-icon>cancel</mat-icon>
+                                        </button>
+                                      </mat-chip>
+                                    </mat-chip-list>
+                                    <input placeholder="New Skill..." [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="addSkills(edu, $event)" />
+                                  </mat-form-field>
+                            </mat-grid-tile>
+                            
+                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <!-- profileSummary -->
+                            <mat-grid-tile colspan="10">
+                                <mat-form-field class="full-width standard-padding">
+                                    <mat-label>Profile <Summary></Summary></mat-label>
+                                    <textarea matInput placeholder="Short description on project and your role" formControlName="profileSummary"></textarea>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
 
                         </mat-grid-list>
-                        <app-pet-projects title="Projects" [petProjects]="professionalProjects(edu)"
-                            [rowHeight]="rowHeight" [user]="user">
-                        </app-pet-projects>
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title> Projects </mat-card-title>
+                                <span class="example-spacer"></span>
+                                <button mat-mini-fab color="primary" (click)="addProject(edu)">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content formArrayName="projects">
+                                <mat-accordion class="example-headers-align"></mat-accordion>
+                                <ng-container
+                                    *ngFor="let project of professionalProjects(edu)?.controls; let idx1 = index;"
+                                    [formGroupName]="idx1">
+                                    <mat-expansion-panel [expanded]="false" hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                {{idx1 + 1}}
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                {{ getProjectTitle(project) }}
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <mat-grid-list class="full-width border-1" cols="11" [rowHeight]="rowHeight">
+
+                                            <!-- delete -->
+                                            <mat-grid-tile>
+                                                <button mat-mini-fab color="error" (click)="deleteProject(edu, idx1)">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </mat-grid-tile>
+
+                                            <!-- title -->
+                                            <mat-grid-tile colspan="10">
+                                                <mat-form-field class="width-90">
+                                                    <mat-label>Title</mat-label>
+                                                    <input matInput placeholder="Title" formControlName="title">
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+
+                                            <mat-grid-tile></mat-grid-tile>
+                                            <!-- projectDuration -->
+                                            <span formGroupName="projectDuration">
+                                                <mat-grid-tile colspan="1">
+                                                    <mat-card-subtitle>Duration</mat-card-subtitle>
+                                                </mat-grid-tile>
+                                                <mat-grid-tile colspan="9">
+
+                                                    <mat-form-field class="number-input">
+                                                        <mat-label>Years</mat-label>
+                                                        <input matInput placeholder="Years" formControlName="years"
+                                                            type="number">
+                                                        <span matSuffix>Years</span>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="number-input">
+                                                        <mat-label>Months</mat-label>
+                                                        <input matInput placeholder="Months" formControlName="months"
+                                                            type="number">
+                                                        <span matSuffix>Months</span>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="number-input">
+                                                        <mat-label>Days</mat-label>
+                                                        <input matInput placeholder="Days" formControlName="days"
+                                                            type="number">
+                                                        <span matSuffix>Days</span>
+                                                    </mat-form-field>
+                                                </mat-grid-tile>
+                                            </span>
+
+                                            <mat-grid-tile></mat-grid-tile>
+                                            <!-- myContributions -->
+                                            <mat-grid-tile colspan="10">
+                                                <mat-form-field class="full-width">
+                                                    <mat-label>My Contributions</mat-label>
+                                                    <textarea matInput placeholder="In 50 words or less"
+                                                        formControlName="myContributions"></textarea>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+
+                                            <mat-grid-tile></mat-grid-tile>
+                                            <!-- projectDetails -->
+                                            <mat-grid-tile colspan="10">
+                                                <mat-form-field class="full-width">
+                                                    <mat-label>Project Details</mat-label>
+                                                    <textarea matInput placeholder="In 50 words or less"
+                                                        formControlName="projectDetails"></textarea>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+
+                                            <mat-grid-tile></mat-grid-tile>
+                                            <!-- githubLink -->
+                                            <mat-grid-tile colspan="10">
+                                                <mat-form-field class="full-width">
+                                                    <mat-label>Github URL</mat-label>
+                                                    <textarea matInput placeholder="In 50 words or less"
+                                                        formControlName="githubLink"></textarea>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+
+                                        </mat-grid-list>
+                                    </mat-expansion-panel>
+                                </ng-container>
+                            </mat-card-content>
+                        </mat-card>
                     </mat-expansion-panel>
                 </ng-container>
             </mat-accordion>

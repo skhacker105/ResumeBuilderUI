@@ -40,6 +40,20 @@ export class EducationInfoComponent implements OnInit, OnChanges {
     this.education.removeAt(index);
   }
 
+  getProjectTitle(project: any): string {
+    return project.get('title').value;
+  }
+
+  addProject(e: any) {
+    if (!this.educationalProjects(e)) return;
+    this.educationalProjects(e).push(SupportFunctions.newProjectForm(this.fb));
+  }
+
+  deleteProject(e: any, index: number) {
+    if (!this.educationalProjects(e)) return;
+    this.educationalProjects(e).removeAt(index);
+  }
+
   submitForm() {}
 
 }

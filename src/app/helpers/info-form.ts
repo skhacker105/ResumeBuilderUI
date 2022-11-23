@@ -47,7 +47,7 @@ export class InfoForm {
     }
 
     renewForms() {
-        this.petProjects = SupportFunctions.generateProjectForm(this.fb, this.formData?.petProjects);
+        this.petProjects = SupportFunctions.generateProjectsForm(this.fb, this.formData?.petProjects);
         this.educationForms = this.renewEducationForms();
         this.professional = this.renewProfessionalForms();
         this.certificationForms = this.renewCertificationForms();

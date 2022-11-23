@@ -10,7 +10,7 @@ export interface IProfessional {
     relievingDate?: Date,
     salary: number,
     stipend?: number,
-    skillsUsed: string,
+    skillsUsed: string[],
     employeeRole?: string,
     profileSummary?: string,
     projects: IProjects[]

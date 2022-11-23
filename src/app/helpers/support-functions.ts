@@ -1,5 +1,6 @@
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ICertification } from "../models/certifications";
+import { IDuration } from "../models/duration";
 import { IEducation } from "../models/education";
 import { IFamily } from "../models/family";
 import { ILanguage } from "../models/language";
@@ -13,23 +14,35 @@ export class SupportFunctions {
     return val || val === 0 ? typeof val === 'number' : false;
   }
 
-  public static generateProjectForm(fb: FormBuilder, projects?: IProjects[]): FormArray | any {
+  public static generateProjectsForm(fb: FormBuilder, projects?: IProjects[]): FormArray | any {
     if (projects && projects.length > 0) {
       return fb.array(projects.map(p => {
-        return fb.group({
-          title: p.title,
-          projectDuration: fb.group({
-            years: p.projectDuration.years,
-            months: p.projectDuration.months,
-            days: p.projectDuration.days
-          }),
-          myContributions: p.myContributions,
-          projectDetails: p.projectDetails,
-          githubLink: p.githubLink
-        });
+        return this.newProjectForm(fb, p);
       }));
     }
     return fb.array([]);
+  }
+
+  public static newProjectForm(fb: FormBuilder, data?: IProjects): FormGroup {
+    return fb.group({
+      title: [data?.title, Validators.required],
+      projectDuration: SupportFunctions.newDurationForm(fb, data?.projectDuration),
+      myContributions: [data?.myContributions, Validators.required],
+      projectDetails: [data?.projectDetails, Validators.required],
+      githubLink: [data?.githubLink]
+    });
+  }
+
+  public static newDurationForm(fb: FormBuilder, data?: IDuration): FormGroup {
+    return fb.group({
+      years: [data?.years],
+      months: [data?.months],
+      days: [data?.days],
+      hours: [data?.hours],
+      minutes: [data?.minutes],
+      seconds: [data?.seconds],
+      milliseconds: [data?.milliseconds]
+    });
   }
 
   public static newEducationForm(fb: FormBuilder, data?: IEducation): FormGroup {
@@ -42,7 +55,7 @@ export class SupportFunctions {
           endedOn: [data?.endedOn],
           marksScored: [data?.marksScored, Validators.required],
           maxPossibleScore: [data ? data.maxPossibleScore : 100, Validators.required],
-          projects: this.generateProjectForm(fb, data?.projects)
+          projects: this.generateProjectsForm(fb, data?.projects)
       });
   }
 
@@ -56,10 +69,10 @@ export class SupportFunctions {
           relievingDate: [data?.relievingDate],
           salary: [data?.salary, Validators.required],
           stipend: [data?.stipend],
-          skillsUsed: [data?.skillsUsed, Validators.required],
+          skillsUsed: [data?.skillsUsed ? data.skillsUsed : [], Validators.required],
           employeeRole: [data?.employeeRole],
           profileSummary: [data?.profileSummary],
-          projects: this.generateProjectForm(fb, data?.projects)
+          projects: this.generateProjectsForm(fb, data?.projects)
       });
   }
 

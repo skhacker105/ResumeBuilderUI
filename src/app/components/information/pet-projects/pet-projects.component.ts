@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SupportFunctions } from 'src/app/helpers/support-functions';
 import { IProjects } from 'src/app/models/projects';
 import { IUser } from 'src/app/models/user';
 
@@ -33,34 +34,12 @@ export class PetProjectsComponent implements OnInit, OnChanges {
 
   addPetProject() {
     if (!this.petProjects) return;
-    this.projectFormArray.push(this.newProjectsForm());
+    this.projectFormArray.push(SupportFunctions.newProjectForm(this.fb));
   }
 
   deletePetProject(index: number) {
     if (!this.petProjects) return;
     this.projectFormArray.removeAt(index);
-  }
-
-  newProjectsForm(data?: IProjects): FormGroup {
-    return this.fb.group({
-      title: [data?.title, Validators.required],
-      projectDuration: this.newDurationForm(),
-      myContributions: [data?.myContributions, Validators.required],
-      projectDetails: [data?.projectDetails, Validators.required],
-      githubLink: [data?.githubLink]
-    });
-  }
-
-  newDurationForm(): FormGroup {
-    return this.fb.group({
-      years: [0],
-      months: [0],
-      days: [0],
-      hours: [0],
-      minutes: [0],
-      seconds: [0],
-      milliseconds: [0]
-    });
   }
 
   submitForm() { }
