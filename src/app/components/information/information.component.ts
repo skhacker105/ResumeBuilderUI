@@ -63,7 +63,6 @@ export class InformationComponent extends InfoForm implements OnInit {
       professional: this.professional.value,
       expertises: this.expertisesForm?.get('lstExpertise')?.value
     }, this.infoForm?.value) as IPersonal;
-    console.log('info = ', info);
     this.user ? this.builderService.saveInfo(this.user._id, info).subscribe(res => {
       this._snackBar.open(res.message, '', {
         duration: this.duration * 1000

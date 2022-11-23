@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './components/home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InformationComponent } from './components/information/information.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,6 +32,7 @@ import { CertificationComponent } from './components/information/certification/c
 import { FamilyComponent } from './components/information/family/family.component';
 import { LanguageComponent } from './components/information/language/language.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
