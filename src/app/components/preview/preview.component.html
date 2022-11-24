@@ -1,1 +1,14 @@
-<p>preview works!</p>
+<ng-container *ngIf="!userId">
+    Cannot identify user
+</ng-container>
+<ng-container *ngIf="userId && !info">
+    Cannot load user information
+</ng-container>
+<ng-container *ngIf="userId && info">
+User info loaded
+<pre>
+    {{ info | json }}
+</pre>
+</ng-container>
+
+
