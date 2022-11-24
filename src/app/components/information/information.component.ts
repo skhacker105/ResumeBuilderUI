@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject, takeUntil } from 'rxjs';
 import { InfoForm } from 'src/app/helpers/info-form';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
 import { IPersonal } from 'src/app/models/personal';
@@ -19,6 +20,7 @@ export class InformationComponent extends InfoForm implements OnInit {
   user: IUser | undefined;
   rowHeight = "100px";
   duration = 3;
+  isActive = new Subject();
   isNumber = SupportFunctions.isNumber;
 
   constructor(private _snackBar: MatSnackBar, private userService: UserService, fb: FormBuilder, private builderService: BuilderService) {
@@ -26,7 +28,9 @@ export class InformationComponent extends InfoForm implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.loggedInUser.subscribe(user => {
+    this.userService.loggedInUser
+    .pipe(takeUntil(this.isActive))
+    .subscribe(user => {
       if (!user) return
       this.user = user;
       this.loadInfo();
@@ -47,7 +51,9 @@ export class InformationComponent extends InfoForm implements OnInit {
 
   loadInfo() {
     if (this.user)
-      this.builderService.getInfo(this.user._id).subscribe(res => {
+      this.builderService.getInfo(this.user._id)
+      .pipe(takeUntil(this.isActive))
+      .subscribe(res => {
         this.user ? this.newInfoForm(this.user, res[0]) : null;
        });
   }
@@ -63,12 +69,19 @@ export class InformationComponent extends InfoForm implements OnInit {
       professional: this.professional.value,
       expertises: this.expertisesForm?.get('lstExpertise')?.value
     }, this.infoForm?.value) as IPersonal;
-    this.user ? this.builderService.saveInfo(this.user._id, info).subscribe(res => {
+    this.user ? this.builderService.saveInfo(this.user._id, info)
+    .pipe(takeUntil(this.isActive))
+    .subscribe(res => {
       this._snackBar.open(res.message, '', {
         duration: this.duration * 1000
       });
       this.loadInfo();
     }) : null;
+  }
+  
+  ngOnDestroy(): void {
+    this.isActive.next(false);
+    this.isActive.complete();
   }
 
 }

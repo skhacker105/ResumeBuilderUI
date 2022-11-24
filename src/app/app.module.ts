@@ -33,6 +33,7 @@ import { FamilyComponent } from './components/information/family/family.componen
 import { LanguageComponent } from './components/information/language/language.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TokenInterceptor } from './services/token.interceptor';
+import { PreviewComponent } from './components/preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TokenInterceptor } from './services/token.interceptor';
     ExpertiseComponent,
     CertificationComponent,
     FamilyComponent,
-    LanguageComponent
+    LanguageComponent,
+    PreviewComponent
   ],
   imports: [
     BrowserModule,

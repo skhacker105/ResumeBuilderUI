@@ -10,7 +10,7 @@
       <mat-icon>view_quilt</mat-icon>
       <span>Select Layout</span>
     </button>
-    <button mat-menu-item *ngIf="user">
+    <button mat-menu-item *ngIf="user" [routerLink]="['/preview', user._id]">
       <mat-icon>visibility</mat-icon>
       <span>Resume Preview</span>
     </button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { IUser } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -12,11 +13,14 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
 
   user: IUser | undefined;
+  isActive = new Subject();
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.loggedInUser.subscribe(user => {
+    this.userService.loggedInUser
+    .pipe(takeUntil(this.isActive))
+    .subscribe(user => {
       this.user = user;
     });
   }
@@ -28,6 +32,11 @@ export class LoginComponent implements OnInit {
   logout() {
     this.userService.logout();
     this.router.navigateByUrl('/');
+  }
+  
+  ngOnDestroy(): void {
+    this.isActive.next(false);
+    this.isActive.complete();
   }
 
 }
