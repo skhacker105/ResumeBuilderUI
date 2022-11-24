@@ -34,6 +34,9 @@ import { LanguageComponent } from './components/information/language/language.co
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TokenInterceptor } from './services/token.interceptor';
 import { PreviewComponent } from './components/preview/preview.component';
+import { DefaultComponent } from './components/preview/views/default/default.component';
+import { ResumeViewDirective } from './directives/resume-view.directive';
+import { ThemesComponent } from './components/preview/themes/themes.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { PreviewComponent } from './components/preview/preview.component';
     CertificationComponent,
     FamilyComponent,
     LanguageComponent,
-    PreviewComponent
+    PreviewComponent,
+    DefaultComponent,
+    ResumeViewDirective,
+    ThemesComponent
   ],
   imports: [
     BrowserModule,

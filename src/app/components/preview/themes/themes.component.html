@@ -1,0 +1,18 @@
+<br>
+<mat-grid-list cols="4" rowHeight="200px">
+    <mat-grid-tile *ngFor="let theme of previewService.lstPreviews">
+        <mat-card class="theme-card">
+            <mat-card-header>
+                <mat-card-title>{{theme.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="theme-view">
+                <br>
+                <mat-icon class="theme-icon">developer_mode</mat-icon>
+                View under development
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-raised-button color="accent" (click)="apply(theme)">Apply</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
