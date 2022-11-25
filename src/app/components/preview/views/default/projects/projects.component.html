@@ -1,0 +1,8 @@
+<mat-list *ngIf="projects">
+    <mat-list-item  *ngFor="let p of projects" class="title">
+        {{ p.title }}
+    </mat-list-item  >
+</mat-list>
+<ng-container *ngIf="!projects || projects.length === 0">
+    <span class="title">NA</span>
+</ng-container>

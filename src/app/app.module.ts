@@ -41,6 +41,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
+import { ProjectsComponent } from './components/preview/views/default/projects/projects.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { DatePipe } from '@angular/common';
     PreviewComponent,
     DefaultComponent,
     ResumeViewDirective,
-    ThemesComponent
+    ThemesComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,14 +89,15 @@ import { DatePipe } from '@angular/common';
     MatSnackBarModule,
     NgxMatFileInputModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true,
   },
-  DatePipe],
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

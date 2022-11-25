@@ -11,5 +11,7 @@ export interface IEducation {
     endedOn?: Date,
     marksScored: number,
     maxPossibleScore: number,
-    projects?: IProjects[]
+    projects?: IProjects[],
+    st?: string | null,
+    ed?: string | null
 }

@@ -2,12 +2,12 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
+import { IEducation } from 'src/app/models/education';
 import { IPersonal } from 'src/app/models/personal';
 import { IPreviewView } from 'src/app/models/preview-view';
 import { IUser } from 'src/app/models/user';
 import { BuilderService } from 'src/app/services/builder.service';
 import { PreviewService } from 'src/app/services/preview.service';
-import { UserService } from 'src/app/services/user.service';
 import { IExperience } from './models/experience';
 
 @Component({
@@ -24,6 +24,8 @@ export class DefaultComponent implements OnInit, IPreviewView {
   isActive = new Subject();
   exp_dataSource: IExperience[] = [];
   exp_columns: string[] = ['company', 'duration', 'role', 'package', 'projects'];
+  edu_dataSource: IEducation[] = [];
+  edu_columns: string[] = ['course', 'details', 'duration', 'score', 'projects'];
 
   constructor(public ps: PreviewService, public builderService: BuilderService,
     private datePipe: DatePipe) { }
@@ -34,6 +36,7 @@ export class DefaultComponent implements OnInit, IPreviewView {
         this.printMode = res
       });
     this.createExperienceData();
+    this.createEducationData();
   }
 
   print() {
@@ -74,13 +77,34 @@ export class DefaultComponent implements OnInit, IPreviewView {
         company: p.companyName,
         dates: st + ' - ' + ed,
         duration: duration,
-        package: p.salary.toString(),
-        projects: [],
+        package: p.salary,
+        projects: p.projects,
         role: p.employeeRole ? p.employeeRole : 'NA'
       };
       arr.push(d);
     });
     this.exp_dataSource = arr;
+  }
+
+  createEducationData() {
+    let arr: IEducation[] = [];
+    this.info?.education.forEach(e => {
+      let obj:IEducation = {
+        course: e.course,
+        marksScored: e.marksScored,
+        maxPossibleScore: e.maxPossibleScore,
+        specialization: e.specialization,
+        startedOn: e.startedOn,
+        st: this.datePipe.transform(e.startedOn, 'dd MMM yy'),
+        ed: e.endedOn ? this.datePipe.transform(e.endedOn, 'dd MMM yy') : '',
+        type: e.type,
+        university: e.university,
+        endedOn: e.endedOn,
+        projects: e.projects
+      };
+      arr.push(obj);
+    });
+    this.edu_dataSource=arr;
   }
 
 }

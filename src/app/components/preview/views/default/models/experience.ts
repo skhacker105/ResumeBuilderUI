@@ -5,6 +5,6 @@ export interface IExperience {
     dates: string;
     duration: string;
     role: string;
-    package: string;
+    package: number;
     projects: IProjects[];
 }
