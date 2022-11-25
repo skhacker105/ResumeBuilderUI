@@ -46,34 +46,34 @@ export class SupportFunctions {
   }
 
   public static newEducationForm(fb: FormBuilder, data?: IEducation): FormGroup {
-      return fb.group({
-          university: [data?.university, Validators.required],
-          course: [data?.course, Validators.required],
-          specialization: [data?.specialization, Validators.required],
-          type: [data?.type ? data?.type : EducationTypes.FullTime, Validators.required],
-          startedOn: [data?.startedOn, [Validators.required]],
-          endedOn: [data?.endedOn],
-          marksScored: [data?.marksScored, Validators.required],
-          maxPossibleScore: [data ? data.maxPossibleScore : 100, Validators.required],
-          projects: this.generateProjectsForm(fb, data?.projects)
-      });
+    return fb.group({
+      university: [data?.university, Validators.required],
+      course: [data?.course, Validators.required],
+      specialization: [data?.specialization, Validators.required],
+      type: [data?.type ? data?.type : EducationTypes.FullTime, Validators.required],
+      startedOn: [data?.startedOn, [Validators.required]],
+      endedOn: [data?.endedOn],
+      marksScored: [data?.marksScored, Validators.required],
+      maxPossibleScore: [data ? data.maxPossibleScore : 100, Validators.required],
+      projects: this.generateProjectsForm(fb, data?.projects)
+    });
   }
 
   public static newProfessionalInfoForm(fb: FormBuilder, data?: IProfessional): FormGroup {
-      return fb.group({
-          isCurrent: [data?.isCurrent, Validators.required],
-          type: [data ? data.type : ProfessionalTypes.FullTime, Validators.required],
-          companyName: [data?.companyName, Validators.required],
-          companyLocation: [data?.companyLocation, Validators.required],
-          joiningDate: [data?.joiningDate, Validators.required],
-          relievingDate: [data?.relievingDate],
-          salary: [data?.salary, Validators.required],
-          stipend: [data?.stipend],
-          skillsUsed: [data?.skillsUsed ? data.skillsUsed : [], Validators.required],
-          employeeRole: [data?.employeeRole],
-          profileSummary: [data?.profileSummary],
-          projects: this.generateProjectsForm(fb, data?.projects)
-      });
+    return fb.group({
+      isCurrent: [data?.isCurrent, Validators.required],
+      type: [data ? data.type : ProfessionalTypes.FullTime, Validators.required],
+      companyName: [data?.companyName, Validators.required],
+      companyLocation: [data?.companyLocation, Validators.required],
+      joiningDate: [data?.joiningDate, Validators.required],
+      relievingDate: [data?.relievingDate],
+      salary: [data?.salary, Validators.required],
+      stipend: [data?.stipend],
+      skillsUsed: [data?.skillsUsed ? data.skillsUsed : [], Validators.required],
+      employeeRole: [data?.employeeRole],
+      profileSummary: [data?.profileSummary],
+      projects: this.generateProjectsForm(fb, data?.projects)
+    });
   }
 
   public static newCertification(fb: FormBuilder, data?: ICertification): FormGroup {
@@ -103,5 +103,33 @@ export class SupportFunctions {
       write: [data?.read],
       speak: [data?.read]
     });
+  }
+
+  public static dateDiff(date1: Date, date2: Date) {
+    var diff = Math.floor(date1.getTime() - date2.getTime());
+    var day = 1000 * 60 * 60 * 24;
+
+    var days = Math.floor(diff / day);
+    var months = Math.floor(days / 31);
+    var years = Math.floor(months / 12);
+    months = months - years * 12;
+    days = days - (years * 12 * 31) - (months * 31)
+
+    var message = '';
+    message += years ? years + " year" : '' + (years > 1 ? 's' : '')
+    message += " " + (months ? months + " month" : '') + (months > 1 ? 's' : '')
+    message += " " + (days ? days + " day" : '') + (days > 1 ? 's' : '')
+
+    return message
+  }
+
+  public static mask(value: string | number, masking_char: string, length: number): string {
+    value = value.toString();
+    if (value.length < length) {
+      for (let i = 0; i < (length - value.length); i++) {
+        value = masking_char + value;
+      }
+    }
+    return value;
   }
 }

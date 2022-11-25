@@ -18,9 +18,10 @@
                     <span class="short-info italic">{{ info && info.professional && info.professional.length > 0 ?
                         info.professional[0].employeeRole : '' }}</span>
                     <span class="example-spacer"></span>
+                    <div class="short-info">Experience ({{ experience }})</div> &nbsp;&nbsp;
                     <div class="short-info">
-                        +91 - {{ info?.currentAddress?.contactNumber ? info?.currentAddress?.contactNumber :
-                        info?.permanentAddress?.contactNumber }}
+                        Contact (+91 - {{ info?.currentAddress?.contactNumber ? info?.currentAddress?.contactNumber :
+                        info?.permanentAddress?.contactNumber }})
                     </div>
                 </mat-toolbar>
                 <br>
@@ -50,27 +51,30 @@
 
                     <ng-container matColumnDef="company">
                         <th mat-header-cell *matHeaderCellDef> Company </th>
-                        <td mat-cell *matCellDef="let element"> test </td>
+                        <td mat-cell *matCellDef="let element"> {{ element.company }} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="duration">
                         <th mat-header-cell *matHeaderCellDef> Duration </th>
-                        <td mat-cell *matCellDef="let element"> test </td>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.dates }}<br>
+                            <span class="short-info">{{ element.duration }}</span>
+                        </td>
                     </ng-container>
 
                     <ng-container matColumnDef="role">
                         <th mat-header-cell *matHeaderCellDef> Role </th>
-                        <td mat-cell *matCellDef="let element"> test </td>
+                        <td mat-cell *matCellDef="let element"> {{ element.role }} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="package">
                         <th mat-header-cell *matHeaderCellDef> Package </th>
-                        <td mat-cell *matCellDef="let element"> test </td>
+                        <td mat-cell *matCellDef="let element"> {{ element.package }} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="projects">
                         <th mat-header-cell *matHeaderCellDef> Projects </th>
-                        <td mat-cell *matCellDef="let element"> test </td>
+                        <td mat-cell *matCellDef="let element"> {{ element.projects }} </td>
                     </ng-container>
                     
                     <tr mat-header-row *matHeaderRowDef="exp_columns"></tr>

@@ -40,6 +40,7 @@ import { ThemesComponent } from './components/preview/themes/themes.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { MatTableModule } from '@angular/material/table';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true,
-  }],
+  },
+  DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
