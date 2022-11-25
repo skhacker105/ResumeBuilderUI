@@ -114,11 +114,13 @@ export class InformationComponent extends InfoForm implements OnInit {
           this._snackBar.open(res.message, '', {
             duration: this.duration * 1000
           });
+          this.profilePicture?.reset();
         },
         error: (err) => {
           this._snackBar.open(err.error, '', {
             duration: this.duration * 1000
-          })
+          });
+          this.profilePicture?.reset();
         }
       });
     });
