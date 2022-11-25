@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ResumeViewDirective } from 'src/app/directives/resume-view.directive';
@@ -32,6 +32,11 @@ export class PreviewComponent implements OnInit, OnDestroy {
       });
   }
 
+  @HostListener("window:afterprint", [])
+  onWindowAfterPrint() {
+    this.previewService.printMode.next(false);
+  }
+
   loadUserInfo() {
     if (!this.userId) return;
     this.builderService.getInfo(this.userId)
@@ -55,13 +60,13 @@ export class PreviewComponent implements OnInit, OnDestroy {
       this.createDynamicComponent(viewContainerRef, this.previewService.prvGrid.view)
     } else {
       const view = this.previewService.lstPreviews.find(x => x.type === this.view);
-      const componentRef = view ? this.createDynamicComponent(viewContainerRef, view.view) : null;
+      view ? this.createDynamicComponent(viewContainerRef, view.view) : null;
     }
   }
 
   createDynamicComponent(viewContainerRef: ViewContainerRef, view: any) {
     const componentRef = viewContainerRef.createComponent<IPreviewView>(view);
-      componentRef.instance.info = this.info;
+    componentRef.instance.info = this.info;
   }
 
   ngOnDestroy(): void {
