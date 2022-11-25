@@ -1,3 +1,7 @@
+table {
+    width: 100%;
+}
+
 .view_container {
     width: 100%;
 }
@@ -43,6 +47,12 @@ img.mat-card-avatar {
     border-top: solid 1px rgb(18, 28, 39);
     border-bottom: solid 1px rgb(233, 162, 0);
     height: 100px;
+}
+
+.sub-header {
+    background-color: white;
+    border-top: solid 1px rgb(233, 162, 0);
+    border-bottom: solid 1px rgb(233, 162, 0);
 }
 
 .skills {

@@ -12,23 +12,27 @@
                 <img *ngIf="pic" class="mat-card-avatar" id="myimage" [src]='pic' />
             </mat-drawer>
             <mat-drawer-content class="main-view">
+                <!-- header -->
                 <mat-toolbar class="detail-header">
                     <span>{{ info?.fname }} {{ info?.lname }}</span> &nbsp;&nbsp;
                     <span class="short-info italic">{{ info && info.professional && info.professional.length > 0 ?
                         info.professional[0].employeeRole : '' }}</span>
                     <span class="example-spacer"></span>
-                    <span class="short-info">s</span> &nbsp;&nbsp;
                     <div class="short-info">
                         +91 - {{ info?.currentAddress?.contactNumber ? info?.currentAddress?.contactNumber :
                         info?.permanentAddress?.contactNumber }}
                     </div>
                 </mat-toolbar>
                 <br>
+
+                <!-- resume headline -->
                 <div class="sub-standard-padding">
                     <p align="justify">
                         {{ info?.resumeHeadLine }}
                     </p>
                 </div>
+
+                <!-- skills chips -->
                 <div class="sub-standard-padding">
                     <mat-chip-list aria-label="Dog selection">
                         <mat-chip *ngFor="let skill of skills" class="skills">
@@ -36,6 +40,42 @@
                         </mat-chip>
                     </mat-chip-list>
                 </div>
+
+                <!-- sub header - project -->
+                <br>
+                <mat-toolbar class="sub-header">
+                    Experience
+                </mat-toolbar>
+                <table mat-table [dataSource]="exp_dataSource" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="company">
+                        <th mat-header-cell *matHeaderCellDef> Company </th>
+                        <td mat-cell *matCellDef="let element"> test </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="duration">
+                        <th mat-header-cell *matHeaderCellDef> Duration </th>
+                        <td mat-cell *matCellDef="let element"> test </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef> Role </th>
+                        <td mat-cell *matCellDef="let element"> test </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="package">
+                        <th mat-header-cell *matHeaderCellDef> Package </th>
+                        <td mat-cell *matCellDef="let element"> test </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="projects">
+                        <th mat-header-cell *matHeaderCellDef> Projects </th>
+                        <td mat-cell *matCellDef="let element"> test </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="exp_columns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: exp_columns;"></tr>
+                </table>
             </mat-drawer-content>
         </mat-drawer-container>
     </div>

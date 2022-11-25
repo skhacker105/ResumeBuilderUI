@@ -19,13 +19,14 @@ export class DefaultComponent implements OnInit, IPreviewView {
   user: IUser | undefined;
   printMode: boolean | undefined;
   isActive = new Subject();
+  exp_dataSource: any[] = [];
+  exp_columns: string[] = ['company', 'duration', 'role', 'package', 'projects'];
 
   constructor(public ps: PreviewService, public builderService: BuilderService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.ps.printMode
       .subscribe(res => {
-        console.log('res = ', res);
         this.printMode = res
       });
   }
