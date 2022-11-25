@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { IPersonal } from 'src/app/models/personal';
 import { IPreviewView } from 'src/app/models/preview-view';
+import { IUser } from 'src/app/models/user';
+import { BuilderService } from 'src/app/services/builder.service';
 import { PreviewService } from 'src/app/services/preview.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-default',
@@ -12,24 +15,40 @@ import { PreviewService } from 'src/app/services/preview.service';
 export class DefaultComponent implements OnInit, IPreviewView {
 
   @Input() public info: IPersonal | undefined;
+  @Input() public pic: string | undefined;
+  user: IUser | undefined;
   printMode: boolean | undefined;
   isActive = new Subject();
 
-  constructor(public ps: PreviewService) { }
+  constructor(public ps: PreviewService, public builderService: BuilderService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.ps.printMode
-    .pipe(takeUntil(this.isActive))
-    .subscribe({
-      next: (res) => this.printMode = res,
-      error: (err) => console.log('error = ', err.error)
-    });
-    console.log('info = ', this.info);
+      .subscribe(res => {
+        console.log('res = ', res);
+        this.printMode = res
+      });
   }
 
   print() {
     this.ps.printMode.next(true);
-    window.print();
+    setTimeout(() => { window.print(); }, 0)
+  }
+
+  get skills(): string[] {
+    let result: string[] = [];
+    this.info?.expertises.forEach(e => this.addToArrayIfNotExists(result, e));
+    this.info?.professional.forEach(p => {
+      p.skillsUsed.forEach(s => this.addToArrayIfNotExists(result, s));
+    });
+    return result.sort();
+  }
+
+  addToArrayIfNotExists(arr: string[], d: string): string[] {
+    if (arr.indexOf(d) === -1) {
+      arr.push(d)
+    }
+    return arr;
   }
 
 }

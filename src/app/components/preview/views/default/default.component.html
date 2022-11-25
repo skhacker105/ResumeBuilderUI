@@ -5,12 +5,38 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="12" rowHeight="100px">
-    <mat-grid-tile colspan="12" class="view_container" [ngClass]="{
-        'standard-padding': !printMode
-    }">
-        <div class="view_container_div">
-            data
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="full-width">
+    <div class="view_container_div">
+        <mat-drawer-container class="example-container">
+            <mat-drawer class="side-view" mode="side" opened>
+                <img *ngIf="pic" class="mat-card-avatar" id="myimage" [src]='pic' />
+            </mat-drawer>
+            <mat-drawer-content class="main-view">
+                <mat-toolbar class="detail-header">
+                    <span>{{ info?.fname }} {{ info?.lname }}</span> &nbsp;&nbsp;
+                    <span class="short-info italic">{{ info && info.professional && info.professional.length > 0 ?
+                        info.professional[0].employeeRole : '' }}</span>
+                    <span class="example-spacer"></span>
+                    <span class="short-info">s</span> &nbsp;&nbsp;
+                    <div class="short-info">
+                        +91 - {{ info?.currentAddress?.contactNumber ? info?.currentAddress?.contactNumber :
+                        info?.permanentAddress?.contactNumber }}
+                    </div>
+                </mat-toolbar>
+                <br>
+                <div class="sub-standard-padding">
+                    <p align="justify">
+                        {{ info?.resumeHeadLine }}
+                    </p>
+                </div>
+                <div class="sub-standard-padding">
+                    <mat-chip-list aria-label="Dog selection">
+                        <mat-chip *ngFor="let skill of skills" class="skills">
+                            {{skill}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </mat-drawer-content>
+        </mat-drawer-container>
+    </div>
+</div>

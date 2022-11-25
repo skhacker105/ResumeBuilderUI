@@ -1,6 +1,7 @@
 import { IPersonal } from "./personal";
 
 export interface IPreviewView {
+    pic: string | undefined;
     info: IPersonal | undefined;
 }
 

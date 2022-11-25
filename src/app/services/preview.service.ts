@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ThemesComponent } from '../components/preview/themes/themes.component';
 import { DefaultComponent } from '../components/preview/views/default/default.component';
 
@@ -7,7 +8,7 @@ import { DefaultComponent } from '../components/preview/views/default/default.co
 })
 export class PreviewService {
 
-  public printMode = new EventEmitter<boolean>(false);
+  public printMode = new BehaviorSubject<boolean>(false);
 
   public prvGrid = {
     type: 'default',

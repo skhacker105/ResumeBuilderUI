@@ -38,6 +38,7 @@ import { DefaultComponent } from './components/preview/views/default/default.com
 import { ResumeViewDirective } from './directives/resume-view.directive';
 import { ThemesComponent } from './components/preview/themes/themes.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     MatChipsModule,
     MatSelectModule,
     MatSnackBarModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    MatSidenavModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

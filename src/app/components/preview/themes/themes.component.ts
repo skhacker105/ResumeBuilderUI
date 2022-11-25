@@ -12,6 +12,7 @@ import { PreviewService } from 'src/app/services/preview.service';
 export class ThemesComponent implements OnInit, IPreviewView {
 
   @Input() public info: IPersonal | undefined;
+  @Input() public pic: string | undefined;
 
   constructor(public previewService: PreviewService, private router: Router) { }
 

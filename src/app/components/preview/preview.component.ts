@@ -18,6 +18,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
   view: string | undefined;
   info: IPersonal | undefined;
   isActive = new Subject();
+  picture: string | undefined;
   @ViewChild(ResumeViewDirective, { static: true }) private appResumeView!: ResumeViewDirective;
 
   constructor(private route: ActivatedRoute, private builderService: BuilderService, private previewService: PreviewService) { }
@@ -44,10 +45,26 @@ export class PreviewComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (info) => {
           if (info && info.length) this.info = info[0];
-          this.loadComponent();
+          this.loadImage();
         },
         error: (err) => {
           console.log('info load error = ', err);
+          this.loadImage();
+        }
+      });
+  }
+
+  loadImage() {
+    if (!this.userId) return;
+    this.builderService.loadImage(this.userId)
+      .pipe(takeUntil(this.isActive))
+      .subscribe({
+        next: (res) => {
+          this.picture = res.image;
+          this.loadComponent();
+        },
+        error: (err) => {
+          console.log('image load error = ', err);
           this.loadComponent();
         }
       });
@@ -67,6 +84,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
   createDynamicComponent(viewContainerRef: ViewContainerRef, view: any) {
     const componentRef = viewContainerRef.createComponent<IPreviewView>(view);
     componentRef.instance.info = this.info;
+    componentRef.instance.pic = this.picture;
   }
 
   ngOnDestroy(): void {
