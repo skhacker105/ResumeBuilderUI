@@ -37,6 +37,7 @@ import { PreviewComponent } from './components/preview/preview.component';
 import { DefaultComponent } from './components/preview/views/default/default.component';
 import { ResumeViewDirective } from './directives/resume-view.directive';
 import { ThemesComponent } from './components/preview/themes/themes.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ThemesComponent } from './components/preview/themes/themes.component';
     MatCheckboxModule,
     MatChipsModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxMatFileInputModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

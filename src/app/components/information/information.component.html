@@ -1,161 +1,175 @@
 <br>
 <div class="info-form-container">
     <div class="info-form">
-        
-            <mat-accordion class="example-headers-align">
-                <!-- Personal Info -->
-                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" color="primary" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Personal data
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Type your perosnal info / professional summary
-                            <mat-icon>account_circle</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-personal-info [infoForm]="infoForm" [rowHeight]="rowHeight" [user]="user"></app-personal-info>
 
-                    <mat-action-row>
-                        <button mat-button color="primary" (click)="nextStep()">Next</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+        <mat-accordion class="example-headers-align">
+            <!-- Personal Info -->
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" color="primary" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Personal data
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Type your perosnal info / professional summary
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <br>
+                <img *ngIf="picture" width="100px" id="myimage" [src]='picture' />
+                <form *ngIf="profilePicture" [formGroup]="profilePicture">
+                    <mat-form-field>
+                        <ngx-mat-file-input formControlName="profile" placeholder="Select Profile Picture"
+                            [multiple]="false" color="primary" (change)="processFile()">
+                            <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
+                        </ngx-mat-file-input>
+                    </mat-form-field>
+                </form>
 
-                <!-- Pet Projects -->
-                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Pet Projects
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Personal
-                            <mat-icon>assignment</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-pet-projects [petProjects]="petProjects" [rowHeight]="rowHeight" [user]="user"></app-pet-projects>
+                <app-personal-info [infoForm]="infoForm" [rowHeight]="rowHeight" [user]="user"></app-personal-info>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="nextStep()">Next</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-                <!-- Educational -->
-                <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Educational
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Starting from 10th till current
-                            <mat-icon>library_books</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-education-info [educationForms]="educationForms" [rowHeight]="rowHeight" [user]="user"></app-education-info>
+            <!-- Pet Projects -->
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Pet Projects
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Personal
+                        <mat-icon>assignment</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-pet-projects [petProjects]="petProjects" [rowHeight]="rowHeight" [user]="user"></app-pet-projects>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="nextStep()">Next</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-                <!-- Professional -->
-                <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Professional
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Jobs/Projects/Skills
-                            <mat-icon>work</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
+            <!-- Educational -->
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Educational
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Starting from 10th till current
+                        <mat-icon>library_books</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-education-info [educationForms]="educationForms" [rowHeight]="rowHeight" [user]="user">
+                </app-education-info>
 
-                    <app-professional-info [professionalInfoForms]="professional" [rowHeight]="rowHeight" [user]="user"></app-professional-info>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="nextStep()">Next</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+            <!-- Professional -->
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Professional
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Jobs/Projects/Skills
+                        <mat-icon>work</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-                <!-- Expertiese -->
-                <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Expertise
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Technical Skills
-                            <mat-icon>stars</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-expertise [expertisesForm]="expertisesForm" [rowHeight]="rowHeight" [user]="user"></app-expertise>
+                <app-professional-info [professionalInfoForms]="professional" [rowHeight]="rowHeight" [user]="user">
+                </app-professional-info>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="nextStep()">Next</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-                <!-- Certification -->
-                <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Certification
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            If Any
-                            <mat-icon>notes</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-certification [certificationForms]="certificationForms" [rowHeight]="rowHeight" [user]="user"></app-certification>
+            <!-- Expertiese -->
+            <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Expertise
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Technical Skills
+                        <mat-icon>stars</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-expertise [expertisesForm]="expertisesForm" [rowHeight]="rowHeight" [user]="user"></app-expertise>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="nextStep()">Next</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-                <!-- Family -->
-                <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Family
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Name and relations
-                            <mat-icon>supervised_user_circle</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-family [familyMemberForms]="familyMembers" [rowHeight]="rowHeight" [user]="user"></app-family>
+            <!-- Certification -->
+            <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Certification
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        If Any
+                        <mat-icon>notes</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-certification [certificationForms]="certificationForms" [rowHeight]="rowHeight" [user]="user">
+                </app-certification>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="nextStep()">End</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-                <!-- Languages -->
-                <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Languages
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Minimum one is required
-                            <mat-icon>language</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-language [languageForms]="languageForms" [rowHeight]="rowHeight" [user]="user"></app-language>
+            <!-- Family -->
+            <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Family
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Name and relations
+                        <mat-icon>supervised_user_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-family [familyMemberForms]="familyMembers" [rowHeight]="rowHeight" [user]="user"></app-family>
 
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                        <button mat-button color="primary" (click)="save()">Save</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">End</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-            </mat-accordion>
+            <!-- Languages -->
+            <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Languages
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Minimum one is required
+                        <mat-icon>language</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-language [languageForms]="languageForms" [rowHeight]="rowHeight" [user]="user"></app-language>
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="save()">Save</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+        </mat-accordion>
     </div>
 </div>
 <br>
