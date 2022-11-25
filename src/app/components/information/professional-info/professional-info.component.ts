@@ -48,7 +48,6 @@ export class ProfessionalInfoComponent implements OnInit, OnChanges {
 
   addSkills(e: any, event: MatChipInputEvent) {
     const exp = (event.value || '').trim();
-    console.log('exp = ', exp);
     if (exp) this.professionalSkills(e).push(exp);
     event.chipInput!.clear();
   }

@@ -54,7 +54,6 @@ export class PreviewComponent implements OnInit, OnDestroy {
     if (!this.view) { // load themes list
       this.createDynamicComponent(viewContainerRef, this.previewService.prvGrid.view)
     } else {
-      console.log('load view = ', this.view)
       const view = this.previewService.lstPreviews.find(x => x.type === this.view);
       const componentRef = view ? this.createDynamicComponent(viewContainerRef, view.view) : null;
     }
