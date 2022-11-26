@@ -6,7 +6,7 @@
       <mat-icon>update</mat-icon>
       <span>Update Information</span>
     </button>
-    <button mat-menu-item *ngIf="user">
+    <button mat-menu-item *ngIf="user" [routerLink]="['/preview', user._id]">
       <mat-icon>view_quilt</mat-icon>
       <span>Select Layout</span>
     </button>

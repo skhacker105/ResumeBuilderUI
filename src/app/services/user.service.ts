@@ -19,8 +19,19 @@ export class UserService {
 
   restoreLoggedInInfo() {
     if (localStorage.getItem('user')) {
-      const u = JSON.parse(localStorage.getItem('user') || '{}');
-      this.setUser(u)
+      const u: IUser = JSON.parse(localStorage.getItem('user') || '{}');
+      this.setUser(u);
+      setTimeout(() => {
+        this.validateToken(u.token).subscribe({
+          next: (r) => {
+            this.getTokenInfo(u.token).subscribe({
+              next: (usr) => this.setUser(usr),
+              error: (err) => console.log('Error = ', err)
+            })
+          },
+          error: (err) => console.log('Error = ', err)
+        });
+      }, 0);
     }
   }
 
@@ -32,6 +43,11 @@ export class UserService {
   setUser(user: IUser | undefined) {
     this._loggedInUser.next(user);
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  validateToken(token: string): Observable<IUser> {
+    const url = environment.uersapi + '/validatetoken?token=' + token;
+    return this.http.get<IUser>(url);
   }
 
   logout() {
