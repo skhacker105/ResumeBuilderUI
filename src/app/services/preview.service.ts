@@ -19,7 +19,8 @@ export class PreviewService {
     {
       type: 'default',
       view: DefaultComponent,
-      name: 'Default'
+      name: 'Default',
+      image: '../../../../assets/themes/default.PNG'
     }
   ];
 

@@ -53,8 +53,25 @@ body {
   display: none;
 }
 
+.inline-icon {
+  vertical-align: bottom;
+}
+
+.padding-right-5 {
+  padding-right: 24px !important;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
 @media print {
   .noprint {
     display: none !important;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }

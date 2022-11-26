@@ -105,7 +105,7 @@ export class SupportFunctions {
     });
   }
 
-  public static dateDiff(date1: Date, date2: Date) {
+  public static dateDiffVector(date1: Date, date2: Date): IDuration {
     var diff = Math.floor(date1.getTime() - date2.getTime());
     var day = 1000 * 60 * 60 * 24;
 
@@ -113,14 +113,33 @@ export class SupportFunctions {
     var months = Math.floor(days / 31);
     var years = Math.floor(months / 12);
     months = months - years * 12;
-    days = days - (years * 12 * 31) - (months * 31)
+    days = days - (years * 12 * 31) - (months * 31);
+    return {
+      years: years,
+      days: days,
+      months: months
+    } as IDuration
+  }
+
+  public static dateDiff(date1: Date, date2: Date): string {
+    const diff = this.dateDiffVector(date1, date2);
+
+    var days = diff.days ? diff.days : 0;
+    var months = diff.months ? diff.months : 0;
+    var years = diff.years ? diff.years : 0;
 
     var message = '';
-    message += years ? years + " year" : '' + (years > 1 ? 's' : '')
+    message += (years ? years + " year" : '') + (years > 1 ? 's' : '')
     message += " " + (months ? months + " month" : '') + (months > 1 ? 's' : '')
-    message += " " + (days ? days + " day" : '') + (days > 1 ? 's' : '')
+    // message += " " + (days ? days + " day" : '') + (days > 1 ? 's' : '')
 
     return message
+  }
+
+  public static removeNumbers(val: string): string {
+    let result = '';
+    val.split('').forEach(v => result += (this.isNumber(+v) ? '' : v));
+    return result.trim();
   }
 
   public static mask(value: string | number, masking_char: string, length: number): string {

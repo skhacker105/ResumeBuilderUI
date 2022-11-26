@@ -7,4 +7,5 @@ export interface IExperience {
     role: string;
     package: number;
     projects: IProjects[];
+    skillsUsed: string[]
 }

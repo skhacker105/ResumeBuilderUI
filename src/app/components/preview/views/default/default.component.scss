@@ -41,6 +41,19 @@ img.avatar {
     color: gray;
 }
 
+.short-grid-info {
+    font-size: small;
+    color: white;
+    letter-spacing: .1rem;
+    padding: 1px;
+}
+
+.shorter-grid-info {
+    font-size: small;
+    color: white;
+    font-style: italic;
+}
+
 .detail-header {
     background-color: white;
     border-top: solid 1px rgb(18, 28, 39);
@@ -55,8 +68,13 @@ img.avatar {
 }
 
 .skills {
+    font-size: xx-small;
     background-color: #efefef;
     color: gray;
+}
+
+.skills-width {
+    max-width: 200px !important;
 }
 
 .title {
@@ -65,4 +83,22 @@ img.avatar {
 
 .cert-icon {
     padding-right: 10px;
+    color: #f558a8;
 }
+
+.mat-divider {
+    border-top-color: rgb(255, 179, 7);
+}
+
+.highlight {
+    color: red;
+}
+.company-role {
+    font-size: small;
+}
+
+@media print {
+    .company-role {
+        font-size: x-small;
+    }
+  }

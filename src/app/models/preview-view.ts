@@ -6,5 +6,5 @@ export interface IPreviewView {
 }
 
 export interface IPreview {
-    type: string, view: IPreviewView, name: string
+    type: string, view: IPreviewView, name: string, image: string
 }

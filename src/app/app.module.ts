@@ -43,6 +43,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { ProjectsComponent } from './components/preview/views/default/projects/projects.component';
 import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { MatListModule } from '@angular/material/list';
     NgxMatFileInputModule,
     MatSidenavModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatDividerModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
