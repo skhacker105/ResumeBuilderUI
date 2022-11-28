@@ -19,21 +19,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.loggedInUser
-    .pipe(takeUntil(this.isActive))
-    .subscribe(user => {
-      this.user = user;
-    });
+      .pipe(takeUntil(this.isActive))
+      .subscribe(user => {
+        this.user = user;
+      });
   }
 
   proceedToLogin() {
     document.location.href = environment.loginurl + '?returnURL=' + document.location.origin;
   }
 
+  loadPreview() {
+    this.router.navigate(['/preview',
+      this.userService.user?._id,
+      this.userService.user?.layout
+    ]);
+  }
+
   logout() {
     this.userService.logout();
     this.router.navigateByUrl('/');
   }
-  
+
   ngOnDestroy(): void {
     this.isActive.next(false);
     this.isActive.complete();

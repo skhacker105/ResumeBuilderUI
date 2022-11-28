@@ -17,6 +17,11 @@ export class UserService {
     this.restoreLoggedInInfo();
   }
 
+  setLayout(layout: string) {
+    if (this._loggedInUser.value)
+      this._loggedInUser.value.layout = layout;
+  }
+
   restoreLoggedInInfo() {
     if (localStorage.getItem('user')) {
       const u: IUser = JSON.parse(localStorage.getItem('user') || '{}');

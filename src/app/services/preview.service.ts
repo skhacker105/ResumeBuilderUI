@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ThemesComponent } from '../components/preview/themes/themes.component';
 import { DefaultComponent } from '../components/preview/views/default/default.component';
 
@@ -24,5 +26,10 @@ export class PreviewService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  setLayout(userId: string, layout: string): Observable<any> {
+    const url = environment.uersapi + '/layout?userId=' + userId + '&layout=' + layout;
+    return this.http.put<any>(url, {});
+  }
 }
