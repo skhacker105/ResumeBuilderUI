@@ -23,6 +23,10 @@ export class ThemesComponent implements OnInit, IPreviewView {
   ngOnInit(): void {
   }
 
+  isDefaultLayout(theme: any): boolean {
+    return this.userService.user?.layout === theme.type;
+  }
+
   apply(theme: any) {
     theme = theme as IPreview;
     this.router.navigate(['/preview',

@@ -10,7 +10,7 @@
                 <img [src]="theme.image" class="theme-image" />
             </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-raised-button color="accent" (click)="setAndApply(theme)">Set As Default</button>
+                <button mat-raised-button color="accent" (click)="setAndApply(theme)" *ngIf="!isDefaultLayout(theme)">Set As Default</button>
                 <button mat-raised-button color="accent" (click)="apply(theme)">Apply</button>
             </mat-card-actions>
         </mat-card>
