@@ -1,7 +1,10 @@
 <mat-toolbar color="primary" class="noprint" *ngIf="!printMode">
-    <button mat-icon-button class="example-icon" aria-label="Logo" routerLink="/">
-        <img src="../../../assets/logos/logo-white-no-background.png" width="50px">
-    </button>
+        <button mat-icon-button class="example-icon" aria-label="Logo" routerLink="/">
+            <img src="../../../assets/logos/logo-white-no-background.png" width="50px">
+        </button>
+        <button mat-icon-button class="home-link" aria-label="Logo" routerLink="/">
+            <mat-icon>home</mat-icon>
+        </button>
     <span class="example-spacer"></span>
     <span *ngIf="user">{{ user.firstName }} {{ user.lastName }}</span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
