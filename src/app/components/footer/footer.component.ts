@@ -39,9 +39,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.isActive))
     .subscribe({
       next: (res) => this.visitorcount = res.message,
-      error: (err) => this._snackBar.open(err.error, '', {
-        duration: this.duration * 1000
-      })
+      error: (err) => {}
     });
   }
 
