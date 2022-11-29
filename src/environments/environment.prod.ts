@@ -3,5 +3,5 @@ export const environment = {
   loginurl: 'https://skops-auth-ui.vercel.app/',
   uersapi: "https://skops.vercel.app/users",
   resumebuilderapi: "https://skops.vercel.app/apiBuilder",
-  visitorapi: "http://skops.vercel.app/visitor"
+  visitorapi: "https://skops.vercel.app/visitor"
 };
