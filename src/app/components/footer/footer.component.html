@@ -1,14 +1,24 @@
 <mat-toolbar color="primary" class="footer-header noprint" *ngIf="!printMode">
     <div class="footer-header-container">
-        <button mat-mini-fab color="primary">
-            <mat-icon>facebook</mat-icon>
-        </button>
-        <!-- <fa name="cog" animation="spin"></fa> -->
-        <!-- <button mat-mini-fab color="primary">
-            
-        </button> -->
+        <span class="youtube"></span>
+        <span class="facebook"></span>
+        <span class="instagram"></span>
+        <span class="twitter"></span>
+        <span class="linkedin"></span>
     </div>
 </mat-toolbar>
 <mat-toolbar color="primary" class="footer noprint" *ngIf="!printMode">
-    footer
+    <mat-card class="left-panel">
+        <mat-card-header>
+            <mat-card-title class="color-white">A Vision of World Collboration</mat-card-title>
+            <mat-card-subtitle class="color-white font-smaller">All Rights reserved</mat-card-subtitle>
+            <mat-card-subtitle class="color-white font-smaller">Copyright &copy; Saurabh Kumar</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <span class="example-spacer"></span>
+    <mat-card class="right-panel">
+        <mat-card-header align="right">
+            <mat-card-subtitle class="color-white font-smaller">Visitors Count {{ visitorcount }}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
 </mat-toolbar>

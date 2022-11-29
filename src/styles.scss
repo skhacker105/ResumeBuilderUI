@@ -13,6 +13,10 @@ body {
   background-blend-mode: color-burn;
 }
 
+.color-white {
+  color: white !important;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -70,6 +74,56 @@ body {
 
 .center-align {
   text-align: center;
+}
+
+.facebook {
+  height: 29px;
+  background-image: url(./assets/logos/social-media.png);
+  background-position: 1px -339px;
+  background-size: 220px;
+  width: 26px;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.instagram {
+  height: 29px;
+  background-image: url(./assets/logos/social-media.png);
+  background-position: -104px -373px;
+  background-size: 220px;
+  width: 26px;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.twitter {
+  height: 29px;
+  background-image: url(./assets/logos/social-media.png);
+  background-position: -35px -338px;
+  background-size: 220px;
+  width: 26px;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.linkedin {
+  height: 29px;
+  background-image: url(./assets/logos/social-media.png);
+  background-position: -137px -373px;
+  background-size: 220px;
+  width: 26px;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.youtube {
+  height: 29px;
+  background-image: url(./assets/logos/social-media.png);
+  background-position: -115px -338px;
+  background-size: 220px;
+  width: 26px;
+  display: inline-block;
+  padding-right: 10px;
 }
 
 @media print {

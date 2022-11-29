@@ -5,7 +5,7 @@
 }
 
 .footer {
-    height: 100px;
+    height: 150px;
     color: white;
 }
 
@@ -16,4 +16,16 @@
     button {
         margin-right: 10px;
     }
+}
+
+.left-panel {
+    background-color: transparent;
+}
+
+.right-panel {
+    background-color: transparent;
+}
+
+.font-smaller {
+    font-size: small !important;
 }

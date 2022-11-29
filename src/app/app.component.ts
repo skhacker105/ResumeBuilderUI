@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { IUser } from './models/user';
+import { SupportFunctions } from './helpers/support-functions';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -12,30 +13,44 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'ResumeBuilderUI';
   isActive = new Subject();
+  duration = 3;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams
-    .pipe(takeUntil(this.isActive))
-    .subscribe(params => {
-      this.loadUserForToken(params);
-    });
+      .pipe(takeUntil(this.isActive))
+      .subscribe(params => {
+        this.loadUserForToken(params);
+      });
+    this.saveVisitor();
   }
 
   loadUserForToken(params: any) {
     const token = params['token'];
     if (!token) return
     else this.userService.getTokenInfo(token)
-    .pipe(takeUntil(this.isActive))
-    .subscribe({
-      next: (res) => {
-        this.userService.setUser(res);
-      },
-      error: (err) => { }
-    });
+      .pipe(takeUntil(this.isActive))
+      .subscribe({
+        next: (res) => {
+          this.userService.setUser(res);
+        },
+        error: (err) => { }
+      });
   }
-  
+
+  saveVisitor() {
+    this.userService.addVisitor(SupportFunctions.getClientInfo())
+      .pipe(takeUntil(this.isActive))
+      .subscribe({
+        next: (res) => { },
+        error: (err) => this._snackBar.open(err.error, '', {
+          duration: this.duration * 1000
+        })
+      });
+  }
+
   ngOnDestroy(): void {
     this.isActive.next(false);
     this.isActive.complete();

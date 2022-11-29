@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IAPIMessageResponse } from '../models/api-message-response';
 import { IUser } from '../models/user';
 
 @Injectable({
@@ -58,5 +59,13 @@ export class UserService {
   logout() {
     this.setUser(undefined);
     localStorage.removeItem('user');
+  }
+
+  addVisitor(detail: any): Observable<any> {
+    return this.http.post(environment.visitorapi, detail);
+  }
+
+  getVisitorsCount(): Observable<IAPIMessageResponse> {
+    return this.http.get<IAPIMessageResponse>(environment.visitorapi);
   }
 }

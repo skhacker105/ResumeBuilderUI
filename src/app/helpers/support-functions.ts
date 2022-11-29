@@ -151,4 +151,15 @@ export class SupportFunctions {
     }
     return value;
   }
+
+  public static getClientInfo(): Object {
+    return {
+      browserCodeName: navigator.appCodeName,
+      browserName: navigator.appName,
+      browserVersion: navigator.appVersion,
+      cookiesEnabled: navigator.cookieEnabled,
+      platform: navigator.platform,
+      userAgentHeader: navigator.userAgent
+    }
+  }
 }

@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   loginurl: 'http://localhost:4200',
   uersapi: "http://localhost:3000/users",
-  resumebuilderapi: "http://localhost:3000/apiBuilder"
+  resumebuilderapi: "http://localhost:3000/apiBuilder",
+  visitorapi: "http://localhost:3000/visitor"
 };
 
 /*

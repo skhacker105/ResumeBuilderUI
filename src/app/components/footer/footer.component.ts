@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { IUser } from 'src/app/models/user';
 import { PreviewService } from 'src/app/services/preview.service';
@@ -14,8 +15,11 @@ export class FooterComponent implements OnInit, OnDestroy {
   user: IUser | undefined;
   isActive = new Subject();
   printMode: boolean | undefined;
+  duration = 3;
+  visitorcount = '00';
 
-  constructor(public userService: UserService, private ps: PreviewService) { }
+  constructor(public userService: UserService, private ps: PreviewService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.userService.loggedInUser
@@ -27,6 +31,18 @@ export class FooterComponent implements OnInit, OnDestroy {
         next: (res) => this.printMode = res,
         error: (err) => console.log('error = ', err.error)
       });
+      this.loadVisitorCount();
+  }
+
+  loadVisitorCount() {
+    this.userService.getVisitorsCount()
+    .pipe(takeUntil(this.isActive))
+    .subscribe({
+      next: (res) => this.visitorcount = res.message,
+      error: (err) => this._snackBar.open(err.error, '', {
+        duration: this.duration * 1000
+      })
+    });
   }
 
   ngOnDestroy(): void {
