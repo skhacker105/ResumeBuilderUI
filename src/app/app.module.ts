@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { HomeComponent } from './components/home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -44,6 +44,8 @@ import { DatePipe } from '@angular/common';
 import { ProjectsComponent } from './components/preview/views/default/projects/projects.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { FooterComponent } from './components/footer/footer.component';
+import { StepComponent } from './components/home/step/step.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { MatDividerModule } from '@angular/material/divider';
     DefaultComponent,
     ResumeViewDirective,
     ThemesComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    FooterComponent,
+    StepComponent
   ],
   imports: [
     BrowserModule,
@@ -102,4 +106,6 @@ import { MatDividerModule } from '@angular/material/divider';
     DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+

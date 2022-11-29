@@ -1,1 +1,13 @@
-<p>home works!</p>
+<mat-grid-list rowHeight="50px" cols="1">
+    <mat-grid-tile>
+        <mat-toolbar class="center-align" class="title-container">
+            <div class="how-to">GUIDE BOOK</div>
+        </mat-toolbar>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="350px" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let step of howToSteps">
+        <app-step class="step" [stepNumber]="step.stepNumber" [image]="step.image" [desc]="step.desc"></app-step>
+    </mat-grid-tile>
+</mat-grid-list>

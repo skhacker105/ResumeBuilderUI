@@ -8,6 +8,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(253, 223, 188);
+  background-image: url(./assets/logos/logo-white-no-background.png);
+  background-blend-mode: color-burn;
 }
 
 .example-spacer {
@@ -65,7 +68,16 @@ body {
   opacity: 0.5;
 }
 
+.center-align {
+  text-align: center;
+}
+
 @media print {
+  body {
+    background-image: none !important;
+    background-color: white;
+  }
+
   .noprint {
     display: none !important;
   }

@@ -1,0 +1,11 @@
+<mat-card class="how-to-step">
+    <mat-card-header>
+        <mat-card-title>Step {{ stepNumber }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="step-image">
+       <div class="step-div"><img [src]="image" class="step-circle"></div>
+    </mat-card-content>
+    <mat-card-actions>
+        <p align="justify">{{ desc }}</p>
+    </mat-card-actions>
+</mat-card>
