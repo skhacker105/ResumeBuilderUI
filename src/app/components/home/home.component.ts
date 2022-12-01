@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PreviewService } from 'src/app/services/preview.service';
 
 @Component({
   selector: 'app-home',
@@ -34,16 +35,21 @@ export class HomeComponent implements OnInit {
       desc: "Click on \"Set As Default\" to set the view as dafulat for your account."
     }
   ];
+  rowHeight = "350px";
   breakpoint: number | undefined;
 
-  constructor() { }
+  constructor(private previewService: PreviewService) { }
 
   ngOnInit(): void {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : this.howToSteps.length;
+    this.previewService.isMobileView();
+    this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
+    this.rowHeight = !this.previewService.mobileView ? '350px' : '260px';
   }
 
   onResize(event: any) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : this.howToSteps.length;
+    this.previewService.isMobileView(event.target.innerWidth);
+    this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
+    this.rowHeight = !this.previewService.mobileView  ? '350px' : '260px';
   }
 
 }

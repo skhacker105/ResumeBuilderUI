@@ -141,3 +141,21 @@ body {
     color: inherit;
   }
 }
+
+@media only screen and (max-width: 690px) {
+  .mob-view {
+    visibility: visible;
+  }
+  .screen-view {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 690px) {
+  .mob-view {
+    visibility: hidden;
+  }
+  .screen-view {
+    visibility: visible;
+  }
+}

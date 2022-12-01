@@ -11,6 +11,8 @@ import { DefaultComponent } from '../components/preview/views/default/default.co
 export class PreviewService {
 
   public printMode = new BehaviorSubject<boolean>(false);
+  private mobileScreenSize = 690;
+  public mobileView = false;
 
   public prvGrid = {
     type: 'default',
@@ -31,5 +33,11 @@ export class PreviewService {
   setLayout(userId: string, layout: string): Observable<any> {
     const url = environment.uersapi + '/layout?userId=' + userId + '&layout=' + layout;
     return this.http.put<any>(url, {});
+  }
+
+  isMobileView(width?: number) {
+    width = width ? width : window.innerWidth;
+    if (width <= this.mobileScreenSize) this.mobileView = true;
+    else this.mobileView = false;
   }
 }

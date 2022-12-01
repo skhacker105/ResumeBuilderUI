@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   duration = 3;
   visitorcount = '00';
 
-  constructor(public userService: UserService, private ps: PreviewService,
+  constructor(public userService: UserService, public ps: PreviewService,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

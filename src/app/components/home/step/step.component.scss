@@ -1,23 +1,52 @@
-.how-to-step {
-    color: gray;
-    width: 70%;
-    height: 250px;
-    position: relative;
-    margin: 0 auto;
+@media only screen and (max-width: 690px) {
+    .how-to-step {
+        color: gray;
+        position: relative;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .step-circle {
+        font-size: 100px;
+        width: 100px;
+        text-align: center;
+    }
+
+    .step-image {
+        width: 100%;
+        height: 120px;
+    }
+
+    .step-div {
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+    }
 }
 
-.step-circle {
-    font-size: 100px;
-    width: 100px;
-    text-align: center;
-}
+@media only screen and (min-width: 690px) {
+    .how-to-step {
+        color: gray;
+        width: 70%;
+        height: 250px;
+        position: relative;
+        margin: 0 auto;
+    }
 
-.step-image {
-    width: 100%;
-    height: 120px;
-}
+    .step-circle {
+        font-size: 100px;
+        width: 100px;
+        text-align: center;
+    }
 
-.step-div {
-    position: relative;
-    margin: 0 auto;
+    .step-image {
+        width: 100%;
+        height: 120px;
+    }
+
+    .step-div {
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+    }
 }
