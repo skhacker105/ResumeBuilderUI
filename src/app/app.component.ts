@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { SupportFunctions } from './helpers/support-functions';
+import { PreviewService } from './services/preview.service';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -16,15 +17,24 @@ export class AppComponent implements OnInit, OnDestroy {
   duration = 3;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar, private previewService: PreviewService) { }
 
   ngOnInit(): void {
+    this.onSizeInit();
     this.saveVisitor();
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.isActive))
       .subscribe(params => {
         this.loadUserForToken(params);
       });
+  }
+
+  onSizeInit() {
+    this.previewService.identifyView();
+  }
+
+  onResize(event: any) {
+    this.previewService.identifyView(event.target.innerWidth);
   }
 
   loadUserForToken(params: any) {

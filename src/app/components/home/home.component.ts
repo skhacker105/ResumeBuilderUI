@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { PreviewService } from 'src/app/services/preview.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { PreviewService } from 'src/app/services/preview.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   howToSteps = [
     {
@@ -38,24 +39,28 @@ export class HomeComponent implements OnInit {
   ];
   rowHeight = "350px";
   isMobileView = false;
+  isActive = new Subject();
   breakpoint: number | undefined;
 
   constructor(private previewService: PreviewService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isMobileView = this.previewService.identifyView();
-    this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
-    this.rowHeight = !this.previewService.mobileView ? '350px' : '260px';
-  }
-
-  onResize(event: any) {
-    this.isMobileView = this.previewService.identifyView(event.target.innerWidth);
-    this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
-    this.rowHeight = !this.previewService.mobileView  ? '350px' : '260px';
+    this.previewService.mobileView
+    .pipe(takeUntil(this.isActive))
+    .subscribe(mobileView => {
+      this.isMobileView = mobileView;
+      this.breakpoint = mobileView ? 1 : this.howToSteps.length;
+      this.rowHeight = !mobileView  ? '350px' : '260px';
+    });
   }
 
   startBuilding() {
     this.router.navigateByUrl('/information');
+  }
+
+  ngOnDestroy(): void {
+    this.isActive.next(false);
+    this.isActive.complete();
   }
 
 }

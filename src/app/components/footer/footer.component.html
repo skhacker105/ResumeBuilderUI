@@ -15,14 +15,14 @@
             <mat-card-subtitle class="color-white font-smaller">Copyright &copy; Saurabh Kumar</mat-card-subtitle>
         </mat-card-header>
     </mat-card>
-    <span class="example-spacer" *ngIf="!ps.mobileView"></span>
-    <mat-card class="right-panel" *ngIf="!ps.mobileView">
+    <span class="example-spacer" *ngIf="!ps.mobileView.value"></span>
+    <mat-card class="right-panel" *ngIf="!ps.mobileView.value">
         <mat-card-header align="right">
             <mat-card-subtitle class="color-white font-smaller">Visitors Count {{ visitorcount }}</mat-card-subtitle>
         </mat-card-header>
     </mat-card>
 </mat-toolbar>
-<mat-toolbar color="primary" class="noprint" *ngIf="!printMode && ps.mobileView">
+<mat-toolbar color="primary" class="noprint" *ngIf="!printMode && ps.mobileView.value">
     <mat-card class="right-panel">
         <mat-card-header>
             <mat-card-subtitle class="color-white font-smaller">Visitors Count {{ visitorcount }}</mat-card-subtitle>

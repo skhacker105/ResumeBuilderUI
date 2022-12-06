@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="body">
+<div class="body" (window:resize)="onResize($event)">
     <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

@@ -5,8 +5,8 @@
     <button mat-icon-button class="home-link" aria-label="Logo" routerLink="/">
         <mat-icon>home</mat-icon>
     </button>
-    <span *ngIf="!ps.mobileView || (ps.mobileView && !userService.user)" class="example-spacer"></span>
-    <h2 *ngIf="!ps.mobileView || (ps.mobileView && !userService.user)">Resume Builder</h2>
+    <span *ngIf="!ps.mobileView.value || (ps.mobileView.value && !userService.user)" class="example-spacer"></span>
+    <h2 *ngIf="!ps.mobileView.value || (ps.mobileView.value && !userService.user)">Resume Builder</h2>
     <span class="example-spacer"></span>
     <span *ngIf="user">{{ user.firstName }} {{ user.lastName }}</span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">

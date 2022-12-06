@@ -12,7 +12,7 @@ export class PreviewService {
 
   public printMode = new BehaviorSubject<boolean>(false);
   private mobileScreenSize = 690;
-  public mobileView = false;
+  public mobileView = new BehaviorSubject<boolean>(false);
 
   public prvGrid = {
     type: 'default',
@@ -35,10 +35,9 @@ export class PreviewService {
     return this.http.put<any>(url, {});
   }
 
-  identifyView(width?: number): boolean {
+  identifyView(width?: number) {
     width = width ? width : window.innerWidth;
-    if (width <= this.mobileScreenSize) this.mobileView = true;
-    else this.mobileView = false;
-    return this.mobileView;
+    if (width <= this.mobileScreenSize) this.mobileView.next(true);
+    else this.mobileView.next(false);
   }
 }
