@@ -97,6 +97,15 @@ img.avatar {
     font-size: small;
 }
 
+.ending {
+    background-image: url(../../../../../assets/thankYou.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50px;
+    opacity: 0.5;
+}
+
 @media print {
     .company-role {
         font-size: x-small;
