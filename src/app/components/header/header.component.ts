@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: IUser | undefined;
   isActive = new Subject();
   printMode: boolean | undefined;
-  constructor(public userService: UserService, private ps: PreviewService) { }
+  constructor(public userService: UserService, public ps: PreviewService) { }
 
   ngOnInit(): void {
     this.userService.loggedInUser

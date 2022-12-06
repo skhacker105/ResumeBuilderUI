@@ -35,9 +35,10 @@ export class PreviewService {
     return this.http.put<any>(url, {});
   }
 
-  isMobileView(width?: number) {
+  identifyView(width?: number): boolean {
     width = width ? width : window.innerWidth;
     if (width <= this.mobileScreenSize) this.mobileView = true;
     else this.mobileView = false;
+    return this.mobileView;
   }
 }

@@ -36,18 +36,19 @@ export class HomeComponent implements OnInit {
     }
   ];
   rowHeight = "350px";
+  isMobileView = false;
   breakpoint: number | undefined;
 
   constructor(private previewService: PreviewService) { }
 
   ngOnInit(): void {
-    this.previewService.isMobileView();
+    this.isMobileView = this.previewService.identifyView();
     this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
     this.rowHeight = !this.previewService.mobileView ? '350px' : '260px';
   }
 
   onResize(event: any) {
-    this.previewService.isMobileView(event.target.innerWidth);
+    this.isMobileView = this.previewService.identifyView(event.target.innerWidth);
     this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
     this.rowHeight = !this.previewService.mobileView  ? '350px' : '260px';
   }

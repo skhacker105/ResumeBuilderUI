@@ -17,11 +17,16 @@ const routes: Routes = [
   },
   {
     path: 'preview/:id',
-    component: PreviewComponent
+    component: PreviewComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'preview/:id/:view',
     component: PreviewComponent
+  },
+  {
+    path: '**',
+    component: HomeComponent
   }
 ];
 

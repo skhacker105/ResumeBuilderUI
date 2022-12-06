@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   proceedToLogin() {
-    document.location.href = environment.loginurl + '?returnURL=' + document.location.origin;
+    document.location.href = environment.loginurl + '?returnURL=' + document.location.origin + this.router.url;
   }
 
   loadPreview() {

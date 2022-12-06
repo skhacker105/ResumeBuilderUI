@@ -23,3 +23,15 @@
 .title-container {
     background-color: #ffb000;
 }
+
+.header-image {
+    background-image: url(../../../assets/header-image.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.start-building-button {
+    padding: 34px;
+    letter-spacing: 2px;
+    font-size: large;
+}

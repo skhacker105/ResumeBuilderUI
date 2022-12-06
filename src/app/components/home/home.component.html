@@ -1,11 +1,23 @@
-<mat-grid-list rowHeight="50px" cols="1">
+<!--  Build resume button -->
+<mat-grid-list rowHeight="419px" [cols]="isMobileView ? 1 : 2" class="header-image">
     <mat-grid-tile>
-        <mat-toolbar class="center-align" class="title-container">
-            <div class="how-to">GUIDE BOOK</div>
-        </mat-toolbar>
+        <button mat-raised-button color="primary" class="start-building-button">
+            Start Building
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!isMobileView">
     </mat-grid-tile>
 </mat-grid-list>
 
+<!-- Guide book header -->
+<mat-grid-list rowHeight="50px" cols="1">
+    <mat-grid-tile>
+        <mat-toolbar class="center-align" class="title-container">
+            <div class="how-to">HOW TO DO IT</div>
+        </mat-toolbar>
+    </mat-grid-tile>
+</mat-grid-list>
+<!--  Guide book component -->
 <mat-grid-list [cols]="breakpoint" [rowHeight]="rowHeight" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let step of howToSteps">
         <app-step class="step" [stepNumber]="step.stepNumber" [image]="step.image" [desc]="step.desc"></app-step>
