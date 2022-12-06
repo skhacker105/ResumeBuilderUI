@@ -1,7 +1,7 @@
 <!--  Build resume button -->
 <mat-grid-list rowHeight="419px" [cols]="isMobileView ? 1 : 2" class="header-image">
     <mat-grid-tile>
-        <button mat-raised-button color="primary" class="start-building-button">
+        <button mat-raised-button color="primary" class="start-building-button" (click)="startBuilding()">
             Start Building
         </button>
     </mat-grid-tile>

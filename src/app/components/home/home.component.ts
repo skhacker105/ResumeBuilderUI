@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PreviewService } from 'src/app/services/preview.service';
 
 @Component({
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
   isMobileView = false;
   breakpoint: number | undefined;
 
-  constructor(private previewService: PreviewService) { }
+  constructor(private previewService: PreviewService, private router: Router) { }
 
   ngOnInit(): void {
     this.isMobileView = this.previewService.identifyView();
@@ -51,6 +52,10 @@ export class HomeComponent implements OnInit {
     this.isMobileView = this.previewService.identifyView(event.target.innerWidth);
     this.breakpoint = this.previewService.mobileView ? 1 : this.howToSteps.length;
     this.rowHeight = !this.previewService.mobileView  ? '350px' : '260px';
+  }
+
+  startBuilding() {
+    this.router.navigateByUrl('/information');
   }
 
 }

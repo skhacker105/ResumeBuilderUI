@@ -19,12 +19,12 @@ export class AppComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.saveVisitor();
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.isActive))
       .subscribe(params => {
         this.loadUserForToken(params);
       });
-    this.saveVisitor();
   }
 
   loadUserForToken(params: any) {

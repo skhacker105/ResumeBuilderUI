@@ -159,7 +159,8 @@ export class SupportFunctions {
       browserVersion: navigator.appVersion,
       cookiesEnabled: navigator.cookieEnabled,
       platform: navigator.platform,
-      userAgentHeader: navigator.userAgent
+      userAgentHeader: navigator.userAgent,
+      recordedOn: new Date()
     }
   }
 }
