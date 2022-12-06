@@ -13,6 +13,7 @@ export class CertificationComponent implements OnInit, OnChanges {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() certificationForms: FormArray | undefined;
+  @Input() mobileView = false;
   certificationForm: FormGroup | undefined;
   get certification(): FormArray { return this.certificationForm?.get('lstCertification') as FormArray; }
 

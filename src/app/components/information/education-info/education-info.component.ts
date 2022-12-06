@@ -14,6 +14,7 @@ export class EducationInfoComponent implements OnInit, OnChanges {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() educationForms: FormArray | undefined;
+  @Input() mobileView = false;
   educationForm: FormGroup | undefined;
   educationTypes = Object.values(EducationTypes);
   isNumber = SupportFunctions.isNumber;

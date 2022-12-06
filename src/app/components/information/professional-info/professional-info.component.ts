@@ -15,6 +15,7 @@ export class ProfessionalInfoComponent implements OnInit, OnChanges {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() professionalInfoForms: FormArray | undefined;
+  @Input() mobileView = false;
   professionalInfoForm: FormGroup | undefined;
   professionalTypes = Object.values(ProfessionalTypes);
   isNumber = SupportFunctions.isNumber;

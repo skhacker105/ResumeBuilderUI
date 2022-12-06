@@ -13,6 +13,7 @@ export class ExpertiseComponent implements OnInit {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() expertisesForm: FormGroup | undefined;
+  @Input() mobileView = false;
   get expertise(): string[] { return this.expertisesForm?.get('lstExpertise')?.value; }
 
   constructor(private fb: FormBuilder) { }

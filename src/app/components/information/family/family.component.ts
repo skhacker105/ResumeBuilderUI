@@ -14,6 +14,7 @@ export class FamilyComponent implements OnInit, OnChanges {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() familyMemberForms: FormArray | undefined;
+  @Input() mobileView = false;
   familyMemberForm: FormGroup | undefined;
   familyTypes = Object.values(Relationships);
   isNumber = SupportFunctions.isNumber;

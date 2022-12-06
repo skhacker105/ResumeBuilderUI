@@ -100,8 +100,8 @@ export class SupportFunctions {
       name: [data?.name, Validators.required],
       proficiency: [data?.proficiency, Validators.required],
       read: [data?.read],
-      write: [data?.read],
-      speak: [data?.read]
+      write: [data?.write],
+      speak: [data?.speak]
     });
   }
 

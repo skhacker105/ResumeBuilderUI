@@ -22,43 +22,43 @@
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
-                        <mat-grid-list cols="11" [rowHeight]="rowHeight" class="full-width border-1">
+                        <mat-grid-list [cols]="mobileView ? 1 : 11" [rowHeight]="rowHeight" class="full-width border-1">
                             <!-- Delete -->
-                            <mat-grid-tile colspan="1">
+                            <mat-grid-tile [colspan]="1">
                                 <button mat-mini-fab (click)="deleteEducation(idx)">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </mat-grid-tile>
 
                             <!-- university -->
-                            <mat-grid-tile colspan="10">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>University</mat-label>
                                     <input matInput placeholder="University" formControlName="university">
                                 </mat-form-field>
                             </mat-grid-tile>
 
-                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <mat-grid-tile [colspan]="1" *ngIf="!mobileView"></mat-grid-tile>
                             <!-- course -->
-                            <mat-grid-tile colspan="10">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Course</mat-label>
                                     <input matInput placeholder="Course" formControlName="course">
                                 </mat-form-field>
                             </mat-grid-tile>
 
-                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <mat-grid-tile [colspan]="1" *ngIf="!mobileView"></mat-grid-tile>
                             <!-- specialization -->
-                            <mat-grid-tile colspan="10">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Specialization</mat-label>
                                     <input matInput placeholder="Specialization" formControlName="specialization">
                                 </mat-form-field>
                             </mat-grid-tile>
 
-                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <mat-grid-tile [colspan]="1" *ngIf="!mobileView"></mat-grid-tile>
                             <!-- type -->
-                            <mat-grid-tile colspan="5">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 5">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Education Type</mat-label>
                                     <mat-select formControlName="type">
@@ -68,11 +68,11 @@
                                     </mat-select>
                                 </mat-form-field>
                             </mat-grid-tile>
-                            <mat-grid-tile colspan="5"></mat-grid-tile>
+                            <mat-grid-tile [colspan]="5" *ngIf="!mobileView"></mat-grid-tile>
 
-                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <mat-grid-tile [colspan]="1" *ngIf="!mobileView"></mat-grid-tile>
                             <!-- startedOn -->
-                            <mat-grid-tile colspan="5">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 5">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Started On</mat-label>
                                     <input matInput [matDatepicker]="pickerd" placeholder="Started On"
@@ -84,7 +84,7 @@
                             </mat-grid-tile>
 
                             <!-- endedOn -->
-                            <mat-grid-tile colspan="5">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 5">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Ended On</mat-label>
                                     <input matInput [matDatepicker]="pickere" placeholder="Ended On"
@@ -95,9 +95,9 @@
                                 </mat-form-field>
                             </mat-grid-tile>
 
-                            <mat-grid-tile colspan="1"></mat-grid-tile>
+                            <mat-grid-tile [colspan]="1" *ngIf="!mobileView"></mat-grid-tile>
                             <!-- marksScored -->
-                            <mat-grid-tile colspan="5">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 5">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Marks Scored</mat-label>
                                     <input matInput type="number" placeholder="Marks Scored"
@@ -106,7 +106,7 @@
                             </mat-grid-tile>
 
                             <!-- maxPossibleScore -->
-                            <mat-grid-tile colspan="5">
+                            <mat-grid-tile [colspan]="mobileView ? 1 : 5">
                                 <mat-form-field class="full-width standard-padding">
                                     <mat-label>Max Possible Score</mat-label>
                                     <input matInput type="number" placeholder="Max Possible Score"
@@ -137,7 +137,7 @@
                                                 {{ getProjectTitle(project) }}
                                             </mat-panel-description>
                                         </mat-expansion-panel-header>
-                                        <mat-grid-list class="full-width border-1" cols="11" [rowHeight]="rowHeight">
+                                        <mat-grid-list class="full-width border-1" [cols]="mobileView ? 1 : 11" [rowHeight]="rowHeight">
 
                                             <!-- delete -->
                                             <mat-grid-tile>
@@ -147,20 +147,20 @@
                                             </mat-grid-tile>
 
                                             <!-- title -->
-                                            <mat-grid-tile colspan="10">
+                                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                                 <mat-form-field class="width-90">
                                                     <mat-label>Title</mat-label>
                                                     <input matInput placeholder="Title" formControlName="title">
                                                 </mat-form-field>
                                             </mat-grid-tile>
 
-                                            <mat-grid-tile></mat-grid-tile>
+                                            <mat-grid-tile *ngIf="!mobileView"></mat-grid-tile>
                                             <!-- projectDuration -->
                                             <span formGroupName="projectDuration">
-                                                <mat-grid-tile colspan="1">
+                                                <mat-grid-tile [colspan]="1" *ngIf="!mobileView">
                                                     <mat-card-subtitle>Duration</mat-card-subtitle>
                                                 </mat-grid-tile>
-                                                <mat-grid-tile colspan="9">
+                                                <mat-grid-tile [colspan]="mobileView ? 1 : 9">
 
                                                     <mat-form-field class="number-input">
                                                         <mat-label>Years</mat-label>
@@ -172,6 +172,13 @@
                                                         <input matInput placeholder="Months" formControlName="months" type="number">
                                                         <span matSuffix>Months</span>
                                                     </mat-form-field>
+                                                    <mat-form-field *ngIf="!mobileView" class="number-input">
+                                                        <mat-label>Days</mat-label>
+                                                        <input matInput placeholder="Days" formControlName="days" type="number">
+                                                        <span matSuffix>Days</span>
+                                                    </mat-form-field>
+                                                </mat-grid-tile>
+                                                <mat-grid-tile [colspan]="1" *ngIf="mobileView">
                                                     <mat-form-field class="number-input">
                                                         <mat-label>Days</mat-label>
                                                         <input matInput placeholder="Days" formControlName="days" type="number">
@@ -180,9 +187,9 @@
                                                 </mat-grid-tile>
                                             </span>
 
-                                            <mat-grid-tile></mat-grid-tile>
+                                            <mat-grid-tile *ngIf="!mobileView"></mat-grid-tile>
                                             <!-- myContributions -->
-                                            <mat-grid-tile colspan="10">
+                                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                                 <mat-form-field class="full-width">
                                                     <mat-label>My Contributions</mat-label>
                                                     <textarea matInput placeholder="In 50 words or less"
@@ -190,9 +197,9 @@
                                                 </mat-form-field>
                                             </mat-grid-tile>
 
-                                            <mat-grid-tile></mat-grid-tile>
+                                            <mat-grid-tile *ngIf="!mobileView"></mat-grid-tile>
                                             <!-- projectDetails -->
-                                            <mat-grid-tile colspan="10">
+                                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                                 <mat-form-field class="full-width">
                                                     <mat-label>Project Details</mat-label>
                                                     <textarea matInput placeholder="In 50 words or less"
@@ -200,9 +207,9 @@
                                                 </mat-form-field>
                                             </mat-grid-tile>
 
-                                            <mat-grid-tile></mat-grid-tile>
+                                            <mat-grid-tile *ngIf="!mobileView"></mat-grid-tile>
                                             <!-- githubLink -->
-                                            <mat-grid-tile colspan="10">
+                                            <mat-grid-tile [colspan]="mobileView ? 1 : 10">
                                                 <mat-form-field class="full-width">
                                                     <mat-label>Github URL</mat-label>
                                                     <textarea matInput placeholder="In 50 words or less"

@@ -12,6 +12,7 @@ export class PersonalInfoComponent implements OnInit {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() infoForm: FormGroup | undefined;
+  @Input() mobileView = false;
   
   get underNoticeControl(): FormControl { return this.infoForm?.get('noticePeriod')?.get('underNotice') as FormControl; }
 

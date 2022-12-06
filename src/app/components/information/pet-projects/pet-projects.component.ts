@@ -15,6 +15,7 @@ export class PetProjectsComponent implements OnInit, OnChanges {
   @Input() rowHeight: string = '50px';
   @Input() petProjects: FormArray | undefined;
   @Input() title: string | undefined;
+  @Input() mobileView = false;
   projects: FormGroup | undefined;
   get projectFormArray(): FormArray { return this.projects?.get('lstProjects') as FormArray; }
 

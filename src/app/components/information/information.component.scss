@@ -31,12 +31,6 @@ mat-card {
   display: flex;
 }
 
-.info-form {
-  width: 70%;
-  min-width: 800px;
-  margin: auto;
-}
-
 .mat-form-field-appearance-legacy {
 
 	.mat-form-field-prefix,
@@ -53,5 +47,23 @@ mat-card {
 .info-form-container::ng-deep .mat-expansion-panel-body {
   max-height: 500px;
   overflow: auto;
+}
+
+
+
+
+@media only screen and (max-width: 690px) {
+  .info-form {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 690px) {
+  .info-form {
+    width: 70%;
+    min-width: 800px;
+    margin: auto;
+  }
 }
 

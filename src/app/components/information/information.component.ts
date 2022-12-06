@@ -6,6 +6,7 @@ import { InfoForm } from 'src/app/helpers/info-form';
 import { SupportFunctions } from 'src/app/helpers/support-functions';
 import { IPersonal } from 'src/app/models/personal';
 import { BuilderService } from 'src/app/services/builder.service';
+import { PreviewService } from 'src/app/services/preview.service';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../models/user';
 
@@ -25,7 +26,8 @@ export class InformationComponent extends InfoForm implements OnInit {
   isNumber = SupportFunctions.isNumber;
   picture: string | undefined;
 
-  constructor(private _snackBar: MatSnackBar, private userService: UserService, fb: FormBuilder, private builderService: BuilderService) {
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, fb: FormBuilder,
+    private builderService: BuilderService, public previewService: PreviewService) {
     super(fb);
   }
 

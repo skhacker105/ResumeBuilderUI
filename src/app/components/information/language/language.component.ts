@@ -14,6 +14,7 @@ export class LanguageComponent implements OnInit, OnChanges {
   @Input() user: IUser | undefined
   @Input() rowHeight: string = '50px';
   @Input() languageForms: FormArray | undefined;
+  @Input() mobileView = false;
   languageForm: FormGroup | undefined;
   proficiencyTypes = Object.values(ProficiencyTypes);
   isNumber = SupportFunctions.isNumber;
